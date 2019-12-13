@@ -20,8 +20,7 @@ class BirthdayList extends React.Component {
     return (
       <div className="row">
         <div className="col-12">
-          {this.props.name}
-          <p>HI</p>
+          <p> List of Names </p>
         </div>
       </div>
     );

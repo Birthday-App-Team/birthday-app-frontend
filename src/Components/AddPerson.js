@@ -31,7 +31,7 @@ class AddPerson extends React.Component {
         <div className="col-9">
           <input
             type="text"
-            className="form-control addTaskTextArea"
+            className="form-control navbar addTaskTextArea"
             aria-describedby="text"
             placeholder="Add notes here"
             value={this.state.InterestNote}
@@ -41,7 +41,7 @@ class AddPerson extends React.Component {
         <div className="col-2">
           <div className="form-group mx-sm-3 mb-2">
             <input
-              className="form-control"
+              className="form-control navbar"
               type="date"
               onChange={this.handleDateChange}
               value={this.state.DOB}
@@ -52,7 +52,7 @@ class AddPerson extends React.Component {
         <div className="col-1">
           <button
             id="addButton"
-            className="btn btn-dark addTaskButton"
+            className="btn btn-warning btn btn-md "
             onClick={this.handleClick}
           >
             <i className="fa fa-plus"> </i>

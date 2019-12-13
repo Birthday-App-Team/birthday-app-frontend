@@ -4,7 +4,7 @@ import "./App.css";
 import moment from "moment";
 import AddPerson from "./Components/AddPerson.js";
 import BirthdayList from "./Components/BirthdayList";
-
+import PersonInfo from "./Components/PersonInfo";
 class App extends React.Component {
   state = {
     birthdays: [
@@ -49,7 +49,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div className="container margin">
+      <div className=" App">
         <h1>
           <span className="h1Letter">Happy Birthday App!</span>
           <span className="list">
@@ -66,11 +66,13 @@ class App extends React.Component {
         </div>
         <div className="row">
           <div className="col-12">
-            <BirthdayList />
+            <BirthdayList name={this.state.birthdays.name} />
           </div>
         </div>
         <div className="row">
-          <div className="col-12"></div>
+          <div className="col-12">
+            <PersonInfo Notes={this.state.birthdays.notes} />
+          </div>
         </div>
 
         <div className="row">
