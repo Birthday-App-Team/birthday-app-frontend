@@ -5,6 +5,7 @@ import moment from "moment";
 import AddPerson from "./Components/AddPerson.js";
 import BirthdayList from "./Components/BirthdayList";
 import PersonInfo from "./Components/PersonInfo";
+
 class App extends React.Component {
   state = {
     birthdays: [
@@ -13,13 +14,15 @@ class App extends React.Component {
         DOB: "1976-12-12",
         gender: "NB",
         notes: "Jane loves water skiing and karate",
+        extend: false,
         id: uuid()
       },
       {
         name: "Akshay",
-        DOB: "197-04-23",
+        DOB: "1997-04-23",
         gender: "M",
         notes: "Akshay like bollywood movies and lager",
+        extend: false,
         id: uuid()
       },
       {
@@ -27,6 +30,7 @@ class App extends React.Component {
         DOB: "1995-01-06",
         gender: "M",
         notes: "Tommy collects Marvel figurines",
+        extend: false,
         id: uuid()
       },
       {
@@ -34,6 +38,7 @@ class App extends React.Component {
         DOB: "2009-03-25",
         gender: "NB",
         notes: "Barbara loves Disney and playing football",
+        extend: false,
         id: uuid()
       },
       {
@@ -42,12 +47,23 @@ class App extends React.Component {
         gender: "NB",
         notes:
           "Oscar goes ballroom dancing twice a week. He mentioned needing a new hat",
+        extend: false,
         id: uuid()
       }
     ]
   };
 
+  showBirthdays = id => {
+    const birthdays = this.state.tasks.map(task => {
+      return task;
+    });
+    return birthdays;
+  };
+
+  // findAge =
+
   render() {
+    console.log(this.state.birthdays.name);
     return (
       <div className=" App">
         <h1>
@@ -66,7 +82,18 @@ class App extends React.Component {
         </div>
         <div className="row">
           <div className="col-12">
-            <BirthdayList name={this.state.birthdays.name} />
+            {this.state.birthdays.map(birthday => {
+              return (
+                <BirthdayList
+                  text={birthday.notes}
+                  name={birthday.name}
+                  key={birthday.id}
+                  id={birthday.TaskID}
+                  dateOfBirth={birthday.DOB}
+                  dropdown={birthday.extend}
+                />
+              );
+            })}
           </div>
         </div>
         <div className="row">

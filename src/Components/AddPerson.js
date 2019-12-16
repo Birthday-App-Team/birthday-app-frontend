@@ -28,7 +28,7 @@ class AddPerson extends React.Component {
   render() {
     return (
       <div className="row">
-        <div className="col-9">
+        <div className="col-6">
           <input
             type="text"
             className="form-control navbar addTaskTextArea"
@@ -38,7 +38,7 @@ class AddPerson extends React.Component {
             onChange={this.updateNoteText}
           ></input>
         </div>
-        <div className="col-2">
+        <div className="col-5">
           <div className="form-group mx-sm-3 mb-2">
             <input
               className="form-control navbar"
