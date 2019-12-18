@@ -7,8 +7,8 @@ class AddPerson extends React.Component {
   //initial state
   state = {
     name: "",
-    DOB: "",
-    InterestNote: "",
+    dateSelected: "",
+    noteText: "",
     showModal: false
   };
 
@@ -16,6 +16,7 @@ class AddPerson extends React.Component {
     this.setState({
       newTaskText: event.target.value
     });
+    console.log("hello");
   };
 
   handleClick = () => {
@@ -42,7 +43,7 @@ class AddPerson extends React.Component {
 
   render() {
     return (
-      <div className="row p-2">
+      <div className="col-2">
         <div
           className={this.state.showModal ? "modal isVisible" : "modal"}
           tabIndex="-1"
@@ -51,7 +52,7 @@ class AddPerson extends React.Component {
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title">Add Person </h5>
+                <h5 className="modal-title blacktext">Add Person </h5>
                 <button
                   type="button"
                   className="close"
@@ -62,42 +63,35 @@ class AddPerson extends React.Component {
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div className="modal-body">
-                <p>NOT AGAIN!!</p>
+              <div className="modal-body lessMargin"></div>
+              <input
+                type="text"
+                className="form-control addTaskTextArea"
+                aria-describedby="text"
+                placeholder="Insert interests here!"
+                value={this.state.noteText}
+                onChange={this.updateNoteText}
+              ></input>
 
-                <p> Sort it out.</p>
-              </div>
-              <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  data-dismiss="modal"
-                  onClick={this.handleModalDismiss}
-                >
-                  Go Away
-                </button>
+              <div className="form-group mx-sm-3 mb-2">
+                <input
+                  className="form-control"
+                  type="date"
+                  onChange={this.handleDateChange}
+                  value={this.state.dateSelected}
+                ></input>
               </div>
             </div>
-          </div>
-        </div>
-        <div className="col-9">
-          {/* <input
-            type="text"
-            className="form-control addTaskTextArea"
-            aria-describedby="text"
-            placeholder="E.g. take out bins"
-            value={this.state.newTaskText}
-            onChange={this.updateTaskText}
-          ></input> */}
-        </div>
-        <div className="col-2">
-          <div className="form-group mx-sm-3 mb-2">
-            {/* <input
-              className="form-control"
-              type="date"
-              onChange={this.handleDateChange}
-              value={this.state.dateSelected}
-            ></input> */}
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-dismiss="modal"
+                onClick={this.handleModalDismiss}
+              >
+                Done
+              </button>
+            </div>
           </div>
         </div>
         <div className="col-1">

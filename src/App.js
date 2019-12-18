@@ -101,7 +101,7 @@ class App extends React.Component {
         <AddPerson />
         <h1>
           <span className="h1Letter">Birthday App</span>
-          <span className="list">
+          <span>
             <u></u>
           </span>
         </h1>{" "}

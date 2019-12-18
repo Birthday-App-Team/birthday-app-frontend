@@ -27,3 +27,11 @@
 .blacktext {
   color: #282c34;
 }
+
+.isVisible {
+  display: initial;
+}
+
+.lessMargin {
+  margin-top: 1%;
+}
