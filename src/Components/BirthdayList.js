@@ -1,37 +1,36 @@
 import React from "react";
 import moment from "moment";
 import "font-awesome/css/font-awesome.min.css";
+import button from "react-bootstrap/Button";
 
 class BirthdayList extends React.Component {
   state = {
-    newTaskText: "",
-    dateSelected: moment().format("YYYY-MM-DD"),
-    showModal: false
+    newBirthdayNote: "",
+    showDropdown: false
   };
 
-  updateBirthday = task => {
-    const tasksCopy = this.state.completedTasks.slice();
-    tasksCopy.push(task);
-    this.setState({
-      completedTasks: tasksCopy
-    });
+  editBirthday = birthday => {
+    console.log("Hi");
+    const newBirthdays = prompt("Update birthday", this.props.text);
+    this.props.editBirthdayFunc(this.props.id, newBirthdays);
+    console.log("id is" + this.props.id);
+    console.log(newBirthdays);
+    return newBirthdays;
   };
+
   handleDelete = e => {
     this.props.deleteTaskFunc(this.props.id);
   };
 
   handleClickDropdown = () => {
-    if (
-      typeof this.state.newTaskText !== "string" ||
-      this.state.newTaskText == ""
-    ) {
+    console.log(this.state.showDropdown);
+    if (this.state.showDropdown === false) {
       this.setState({
-        showModal: true
+        showDropdown: true
       });
     } else {
-      this.props.addTaskFunc(this.state.newTaskText, this.state.dateSelected);
       this.setState({
-        newTaskText: ""
+        showDropdown: false
       });
     }
   };
@@ -44,7 +43,7 @@ class BirthdayList extends React.Component {
           {moment().diff(this.props.dateOfBirth, "years")}
         </div>
         <div className="col-2">
-          <button type="button" class="btn btn-link">
+          <button type="button" className="btn btn-link">
             {" "}
             <a
               href={
@@ -59,24 +58,33 @@ class BirthdayList extends React.Component {
           </button>
         </div>
         <div className="col-2">
-          <button type="button" class="btn btn-primary">
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={this.editBirthday}
+          >
             edit
           </button>
         </div>
         <div className="col-2">
           <p>
             {" "}
-            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-            <i className="fa fa-caret-down"></i>  </button>
-     
+            <button
+              className="btn btn-primary"
+              type="button"
+              onClick={this.handleClickDropdown}
+            >
+              <i className="fa fa-caret-down"></i>{" "}
+            </button>
           </p>
-          <div className="collapse" id="collapseExample">
-            <div className="card card-body">
-              Anim pariatur cliche reprehenderit, enim eiusmod high life
-              accusamus terry richardson ad squid. Nihil anim keffiyeh
-              helvetica, craft beer labore wes anderson cred nesciunt sapiente
-              ea proident.
-            </div>
+        </div>
+        <div className="row">
+          <div
+            className="collapse"
+            id="collapseExample"
+            style={{ display: this.state.showDropdown ? "inline" : "none" }}
+          >
+            <div className="card card-body blacktext">{this.props.text}</div>
           </div>
         </div>
       </div>
