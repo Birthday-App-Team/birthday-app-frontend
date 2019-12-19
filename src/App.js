@@ -122,7 +122,6 @@ class App extends React.Component {
             {this.state.birthdays.map(birthday => {
               return (
                 <BirthdayList
-                  addPersonToList={this.addPerson}
                   text={birthday.notes}
                   name={birthday.name}
                   key={birthday.id}

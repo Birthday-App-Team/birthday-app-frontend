@@ -61,6 +61,19 @@ code {
   font-family: cursive;
   font-style: oblique;
 }
+.navbarfoo{
+  height: 100px;
+  margin-bottom: 15px;
+  text-align: left;
+  font-size: 18px;
+  font: grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: cursive;
+  font-style: oblique;
+
+}
 .taskRow {
   padding-top: 20px;
   padding-bottom: 10px;

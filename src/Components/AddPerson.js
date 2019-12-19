@@ -95,13 +95,13 @@ class AddPerson extends React.Component {
               className= "form-control navbar"
                 type="text"
                 
-                className="form-control "
+                className="form-control navbarfoo "
                 aria-describedby="text"
                 placeholder="Insert interests here!"
                 value={this.state.noteText}
                 onChange={this.updateNoteText}
               ></input>
-
+                <br></br>
               <div className="form-group mx-sm-3 mb-2">
                 <input
                   className="form-control"
