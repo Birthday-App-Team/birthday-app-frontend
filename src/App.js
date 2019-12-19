@@ -1,10 +1,8 @@
 import React from "react";
-import uuid from "uuid/v4";
 import "./App.css";
-import moment from "moment";
 import AddPerson from "./Components/AddPerson.js";
 import BirthdayList from "./Components/BirthdayList";
-import PersonInfo from "./Components/PersonInfo";
+// import PersonInfo from "./Components/PersonInfo";
 
 class App extends React.Component {
   state = {
@@ -60,19 +58,12 @@ class App extends React.Component {
     return birthdays;
   };
 
-  //
-
-  undoTask = id => {
-    const updatedTasks = this.state.tasks.map(task => {
-      if (task.id === id) {
-        task.completed = false;
-      }
-
-      return task;
+  deleteBirthday = id => {
+    const birthdaysNotDel = this.state.birthdays.filter(birthday => {
+      return birthday.id !== id;
     });
-
     this.setState({
-      tasks: updatedTasks
+      birthdays: birthdaysNotDel
     });
   };
 
@@ -123,16 +114,12 @@ class App extends React.Component {
                   dateOfBirth={birthday.DOB}
                   dropdown={birthday.extend}
                   editBirthdayFunc={this.editBirthday}
+                  deleteBirthdayFunc={this.deleteBirthday}
                 />
               );
             })}
           </div>
         </div>
-        {/* <div className="row">
-          <div className="col-12">
-            <PersonInfo Notes={this.state.birthdays.notes} />
-          </div>
-        </div> */}
         <div className="row">
           <div className="col-12">
             <br></br>

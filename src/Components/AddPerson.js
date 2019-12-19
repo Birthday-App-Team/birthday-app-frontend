@@ -1,6 +1,5 @@
 import React from "react";
 import "../App.css";
-import moment from "moment";
 import "font-awesome/css/font-awesome.min.css";
 
 class AddPerson extends React.Component {
@@ -43,16 +42,23 @@ class AddPerson extends React.Component {
 
   render() {
     return (
-      <div className="col-2">
+      <div className="row">
         <div
-          className={this.state.showModal ? "modal isVisible" : "modal"}
+          className={
+            this.state.showModal ? "modal  isVisible blacktext" : "modal "
+          }
+          id="modalEditForm"
           tabIndex="-1"
           role="dialog"
+          aria-labelledby="myModalLabel"
+          aria-hidden="true"
         >
           <div className="modal-dialog" role="document">
             <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title blacktext">Add Person </h5>
+              <div className="modal-header text-center">
+                <h4 className="modal-title w-100 font-weight-bold">
+                  Add Birthday
+                </h4>
                 <button
                   type="button"
                   className="close"
@@ -63,45 +69,48 @@ class AddPerson extends React.Component {
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div className="modal-body lessMargin"></div>
-              <input
-                type="text"
-                className="form-control addTaskTextArea"
-                aria-describedby="text"
-                placeholder="Insert interests here!"
-                value={this.state.noteText}
-                onChange={this.updateNoteText}
-              ></input>
-
-              <div className="form-group mx-sm-3 mb-2">
-                <input
-                  className="form-control"
-                  type="date"
-                  onChange={this.handleDateChange}
-                  value={this.state.dateSelected}
-                ></input>
+              <div className="modal-body mx-3">
+                <div className="md-form">
+                  <i className="fas fa-pencil prefix grey-text"></i>
+                  <textarea
+                    type="text"
+                    id="form8"
+                    className="md-textarea form-control"
+                    rows="4"
+                    placeholder={this.props.text}
+                    value={this.state.noteText}
+                    onChange={this.updateNoteText}
+                  ></textarea>
+                  <label
+                    data-error="wrong"
+                    data-success="right"
+                    htmlFor="form8"
+                  >
+                    {this.props.text}
+                  </label>
+                </div>
+              </div>
+              <div className="modal-footer d-flex justify-content-center">
+                <button
+                  className="btn btn-unique"
+                  onClick={this.handleModalDismiss}
+                >
+                  Done
+                </button>
               </div>
             </div>
-            <div className="modal-footer">
-              <button
-                type="button"
-                className="btn btn-secondary"
-                data-dismiss="modal"
-                onClick={this.handleModalDismiss}
-              >
-                Done
-              </button>
+            <div className="row">
+              <div className="col-2">
+                <button
+                  id="addButton"
+                  className="btn btn-info btn btn-md "
+                  onClick={this.handleClick}
+                >
+                  <i className="fa fa-plus"> </i>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-        <div className="col-1">
-          <button
-            id="addButton"
-            className="btn btn-info btn btn-md "
-            onClick={this.handleClick}
-          >
-            <i className="fa fa-plus"> </i>
-          </button>
         </div>
       </div>
     );
