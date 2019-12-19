@@ -10,7 +10,6 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.id = 0;
-
     this.state = {
     birthdays: [
       {
@@ -64,13 +63,14 @@ class App extends React.Component {
     return birthdays;
   };
 
-  //
-  addPersonToList = (id) => {
+  
+  addPerson = (id) => {
     const newbirthdays = this.state.birthdays.push(newPerson => {
       return newPerson.id === id
     });
 
     this.setState({ birthdays: newbirthdays });
+    console.log("addPersonToList just ran");
   }
     
 
@@ -104,7 +104,7 @@ class App extends React.Component {
     console.log(this.state.birthdays.name);
     return (
       <div className=" App">
-        <AddPerson newPerson={this.addPersonToList}/>
+        <AddPerson newPerson={this.addPerson}/>
         <h1>
           <span className="h1Letter">Birthday App</span>
           <span>

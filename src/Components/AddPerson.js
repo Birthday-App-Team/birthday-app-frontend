@@ -5,7 +5,10 @@ import "font-awesome/css/font-awesome.min.css";
 
 class AddPerson extends React.Component {
   //initial state
-  state = {
+  constructor(){
+    super(this.props)
+  }
+    state = {
     name: " ",
     dateSelected: " ",
     noteText: " ",
@@ -13,16 +16,7 @@ class AddPerson extends React.Component {
     birthday: " "
   };
 
-  addPerson = () => {
-    let birthday = {
-      id: this.id + 1,
-      birthdays: this.state.birthdays,
-      completed: false
-    }
-    this.props.newbirthdays(birthday);
-    this.setState({ birthdays: "" });
-  }
-  birthdaysChanged = (event) => {
+    birthdaysChanged = (event) => {
     let birthdays = this.state.birthdays;
     birthdays = event.target.value;
     this.setState({ birthdays });
@@ -57,7 +51,19 @@ class AddPerson extends React.Component {
       DOB: e.target.value
     });
   };
-
+  setPerson = (e) => {
+      this.setState({
+        birthdays: e.target.value
+      })
+  }
+  addPerson = () => {
+    this.id = this.id + 1;
+    const newBirthdays = birthdays.assign([], this.state.birthdays)
+    newBirthdays.push ({
+      id : this.id,
+      birthday : this.statebirthdays
+    })
+  }
   render() {
     return (
       <div className="col-2">
@@ -72,11 +78,10 @@ class AddPerson extends React.Component {
                 <h5 className="modal-title blacktext">
                 <input
                   className="form-control navbar"
-                  type="text"
+                  type="text" onBlur={this.setPerson}
                   id="addPerson"
                   placeholder="Insert Name"
-                  value={this.state.addPerson}
-                  onChange={this.addPersonUpdated}
+                  onChange={this.addPerson}
                 />
                 </h5>
                 <button
