@@ -51,11 +51,10 @@ code {
 
 .navbar {
   height: 40px;
-  background-color: rgb(153, 113, 165);
   margin-bottom: 15px;
   text-align: left;
   font-size: 18px;
-  font-color: black;
+  font: grey;
   display: flex;
   justify-content: center;
   align-items: center;

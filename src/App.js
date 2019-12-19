@@ -7,7 +7,11 @@ import BirthdayList from "./Components/BirthdayList";
 import PersonInfo from "./Components/PersonInfo";
 
 class App extends React.Component {
-  state = {
+  constructor(props) {
+    super(props);
+    this.id = 0;
+
+    this.state = {
     birthdays: [
       {
         name: "Jane",
@@ -51,7 +55,7 @@ class App extends React.Component {
         id: 5
       }
     ]
-  };
+  }};
 
   showBirthdays = id => {
     const birthdays = this.state.tasks.map(task => {
@@ -61,44 +65,46 @@ class App extends React.Component {
   };
 
   //
+  addPersonToList = (id) => {
+    const newbirthdays = this.state.birthdays.push(newPerson => {
+      return newPerson.id === id
+    });
 
-  undoTask = id => {
-    const updatedTasks = this.state.tasks.map(task => {
-      if (task.id === id) {
-        task.completed = false;
+    this.setState({ birthdays: newbirthdays });
+  }
+    
+
+    deleteBirthday = id => {
+      const birthdaysNotDel = this.state.birthdays.filter(birthday => {
+        return birthday.id !== id;
+      });
+      this.setState({
+        birthdays: birthdaysNotDel
+      });
+    };
+  
+    editBirthday = (id, newBirthday) => {
+      console.log("hello");
+      if (newBirthday === "") {
+        return;
       }
-
-      return task;
-    });
-
-    this.setState({
-      tasks: updatedTasks
-    });
-  };
-
-  editBirthday = (id, newBirthday) => {
-    console.log("hello");
-    if (newBirthday === "") {
-      return;
-    }
-    const birthdaysCopy = this.state.birthdays.slice();
-    birthdaysCopy.forEach(birthday => {
-      if (birthday.id === id) {
-        console.log("there");
-        birthday.notes = newBirthday;
-      }
-    });
-    console.log(birthdaysCopy);
-    this.setState({
-      birthdays: birthdaysCopy
-    });
-  };
-
-  render() {
+      const birthdaysCopy = this.state.birthdays.slice();
+      birthdaysCopy.forEach(birthday => {
+        if (birthday.id === id) {
+          console.log("there");
+          birthday.notes = newBirthday;
+        }
+      });
+      console.log(birthdaysCopy);
+      this.setState({
+        birthdays: birthdaysCopy
+      });
+    };
+    render() {
     console.log(this.state.birthdays.name);
     return (
       <div className=" App">
-        <AddPerson />
+        <AddPerson newPerson={this.addPersonToList}/>
         <h1>
           <span className="h1Letter">Birthday App</span>
           <span>
@@ -116,6 +122,7 @@ class App extends React.Component {
             {this.state.birthdays.map(birthday => {
               return (
                 <BirthdayList
+                  addPersonToList={this.addPerson}
                   text={birthday.notes}
                   name={birthday.name}
                   key={birthday.id}
@@ -123,17 +130,13 @@ class App extends React.Component {
                   dateOfBirth={birthday.DOB}
                   dropdown={birthday.extend}
                   editBirthdayFunc={this.editBirthday}
+                  deleteBirthdayFunc={this.deleteBirthday}
                 />
               );
             })}
           </div>
         </div>
-        {/* <div className="row">
-          <div className="col-12">
-            <PersonInfo Notes={this.state.birthdays.notes} />
-          </div>
-        </div> */}
-        <div className="row">
+                <div className="row">
           <div className="col-12">
             <br></br>
             <br></br>

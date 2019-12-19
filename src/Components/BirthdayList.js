@@ -6,7 +6,8 @@ import button from "react-bootstrap/Button";
 class BirthdayList extends React.Component {
   state = {
     newBirthdayNote: "",
-    showDropdown: false
+    showDropdown: false,
+    showModal: false
   };
 
   editBirthday = birthday => {
@@ -33,6 +34,41 @@ class BirthdayList extends React.Component {
         showDropdown: false
       });
     }
+  };
+
+  updateNoteText = event => {
+    this.setState({
+      newBirthdayNote: event.target.value
+    });
+    console.log("hello");
+  };
+
+  handleClickEdit = () => {
+    console.log("hi");
+    if (this.state.showModal === false) {
+      this.setState({
+        showModal: true
+      });
+      console.log(this.state.showModal);
+    }
+  };
+
+  handleClickDelete = () => {
+    this.props.deleteBirthdayFunc(this.props.id);
+  };
+
+  handleModalDismiss = () => {
+    this.props.editBirthdayFunc(this.props.id, this.state.newBirthdayNote);
+
+    this.setState({
+      showModal: false
+    });
+  };
+
+  handleDateChange = e => {
+    this.setState({
+      DOB: e.target.value
+    });
   };
 
   render() {

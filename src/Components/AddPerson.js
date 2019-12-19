@@ -6,11 +6,28 @@ import "font-awesome/css/font-awesome.min.css";
 class AddPerson extends React.Component {
   //initial state
   state = {
-    name: "",
-    dateSelected: "",
-    noteText: "",
-    showModal: false
+    name: " ",
+    dateSelected: " ",
+    noteText: " ",
+    showModal: false,
+    birthday: " "
   };
+
+  addPerson = () => {
+    let birthday = {
+      id: this.id + 1,
+      birthdays: this.state.birthdays,
+      completed: false
+    }
+    this.props.newbirthdays(birthday);
+    this.setState({ birthdays: "" });
+  }
+  birthdaysChanged = (event) => {
+    let birthdays = this.state.birthdays;
+    birthdays = event.target.value;
+    this.setState({ birthdays });
+
+  }
 
   updateNoteText = event => {
     this.setState({
@@ -52,7 +69,16 @@ class AddPerson extends React.Component {
           <div className="modal-dialog" role="document">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title blacktext">Add Person </h5>
+                <h5 className="modal-title blacktext">
+                <input
+                  className="form-control navbar"
+                  type="text"
+                  id="addPerson"
+                  placeholder="Insert Name"
+                  value={this.state.addPerson}
+                  onChange={this.addPersonUpdated}
+                />
+                </h5>
                 <button
                   type="button"
                   className="close"
@@ -63,10 +89,13 @@ class AddPerson extends React.Component {
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
+              <hr/>
               <div className="modal-body lessMargin"></div>
               <input
+              className= "form-control navbar"
                 type="text"
-                className="form-control addTaskTextArea"
+                
+                className="form-control "
                 aria-describedby="text"
                 placeholder="Insert interests here!"
                 value={this.state.noteText}
@@ -95,12 +124,7 @@ class AddPerson extends React.Component {
           </div>
         </div>
         <div className="col-1">
-          <button
-            id="addButton"
-            className="btn btn-info btn btn-md "
-            onClick={this.handleClick}
-          >
-            <i className="fa fa-plus"> </i>
+        <button type="button" className="btn btn-success btn-md" onClick={this.handleClick}> <i className="fa fa-plus"> </i>
           </button>
         </div>
       </div>
