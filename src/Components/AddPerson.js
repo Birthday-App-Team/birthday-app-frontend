@@ -96,6 +96,11 @@ class AddPerson extends React.Component {
                 type="text"
                 
                 className="form-control navbarfoo "
+                type="text"
+                  id="addPerson"
+                  placeholder="Insert Name"
+                  value={this.state.addPerson}
+                  onChange={this.addPersonUpdated}
                 aria-describedby="text"
                 placeholder="Insert interests here!"
                 value={this.state.noteText}
