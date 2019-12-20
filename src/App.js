@@ -1,8 +1,9 @@
 import React from "react";
 import "./App.css";
-import AddPerson from "./Components/AddPerson.js";
+import AddPerson from "./Components/AddPerson";
 import BirthdayList from "./Components/BirthdayList";
 // import PersonInfo from "./Components/PersonInfo";
+import Calendar from "./Components/Calendar";
 
 class App extends React.Component {
   state = {
@@ -12,7 +13,6 @@ class App extends React.Component {
         DOB: "1976-12-12",
         gender: "NB",
         notes: "Jane loves water skiing and karate",
-        extend: false,
         id: 1
       },
       {
@@ -20,7 +20,6 @@ class App extends React.Component {
         DOB: "1997-04-23",
         gender: "M",
         notes: "Akshay like bollywood movies and lager",
-        extend: false,
         id: 2
       },
       {
@@ -28,7 +27,6 @@ class App extends React.Component {
         DOB: "1995-01-06",
         gender: "M",
         notes: "Tommy collects Marvel figurines",
-        extend: false,
         id: 3
       },
       {
@@ -36,7 +34,6 @@ class App extends React.Component {
         DOB: "2009-03-25",
         gender: "NB",
         notes: "Barbara loves Disney and playing football",
-        extend: false,
         id: 4
       },
       {
@@ -45,17 +42,72 @@ class App extends React.Component {
         gender: "NB",
         notes:
           "Oscar goes ballroom dancing twice a week. He mentioned needing a new hat",
-        extend: false,
         id: 5
       }
     ]
   };
+  // addBirthday = (name, birthday, gender, birthdayText,) => {
+  //   const newBirthday = {
+  //     Text: taskText,
+  //     Completed: false,
+  //     DateCreated: moment().format("dddd, MMMM Do YYYY"),
+  //     DateDue: dueByDate,
+  //     UserId: 1
+  //     // TaskId: uuid()
+  //   };
 
-  showBirthdays = id => {
-    const birthdays = this.state.tasks.map(task => {
-      return task;
+  //   const tasksCopy = this.state.tasks.slice();
+
+  //   axios
+  //   .post(
+  //     "https://",
+  //     newBirthday
+  //   )
+  //   .then(response => {
+  //     console.log(response);
+  //     const birthdayFromDB = response.data;
+  //     tasksCopy.push(birthdayFromDB);
+
+  //     this.setState({
+  //       tasks: tasksCopy
+  //     });
+  //   })
+  //   .catch(err => console.log("Error creating task", err));
+  // };
+
+  // deleteTask = id => {
+  //   axios
+  //     .delete(
+  //       "https://cr5ghnlv41.execute-api.eu-west-2.amazonaws.com/dev/tasks/" + id
+  //     )
+  //     .then(response => {
+  //       console.log(response);
+  //       const tasksNotDel = this.state.tasks.filter(task => {
+  //         return task.id !== id;
+  //       });
+  //       this.setState({
+  //         tasks: tasksNotDel
+  //       });
+  //     })
+  //     .catch(err => console.log("Error deleting task", err));
+  // };
+
+  addBirthday = (name, birthday, note, gender) => {
+    const newBirthday = {
+      name: name,
+      DOB: birthday,
+      gender: gender,
+      notes: note,
+      extend: false,
+      id: this.state.birthdays.length + 1
+    };
+    const birthdaysCopy = this.state.birthdays.slice();
+    birthdaysCopy.push(newBirthday);
+    console.log(birthdaysCopy);
+    this.setState({
+      birthdays: birthdaysCopy
     });
-    return birthdays;
+    console.log(this.state.birthdays);
   };
 
   deleteBirthday = id => {
@@ -89,7 +141,7 @@ class App extends React.Component {
     console.log(this.state.birthdays.name);
     return (
       <div className=" App">
-        <AddPerson />
+        <AddPerson addBirthdayFunc={this.addBirthday} />
         <h1>
           <span className="h1Letter">Birthday App</span>
           <span>
@@ -97,6 +149,7 @@ class App extends React.Component {
           </span>
         </h1>{" "}
         <br></br>
+        {/* <Calendar className="calenderStyle calendar-container" /> */}
         <div className="row">
           <div className="col-12">
             <br></br>

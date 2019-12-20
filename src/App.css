@@ -44,3 +44,8 @@
   width: auto;
   min-width: 300px;
 }
+
+.calenderStyle {
+  position: "relative";
+  margin: "50px auto";
+}

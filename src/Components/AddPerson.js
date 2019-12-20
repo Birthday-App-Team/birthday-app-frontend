@@ -7,13 +7,29 @@ class AddPerson extends React.Component {
   state = {
     name: "",
     dateSelected: "",
-    noteText: "",
-    showModal: false
+    note: "",
+    gender: "f",
+    showModal: false,
+    birthday: ""
+  };
+
+  handleClickAdd = () => {
+    this.props.addBirthdayFunc(
+      this.state.name,
+      this.state.birthday,
+      this.state.note,
+      this.state.gender
+    );
+    console.log("hi add", this.state.name);
+
+    this.setState({
+      showModal: false
+    });
   };
 
   updateNoteText = event => {
     this.setState({
-      newTaskText: event.target.value
+      note: event.target.value
     });
     console.log("hello");
   };
@@ -34,80 +50,122 @@ class AddPerson extends React.Component {
     });
   };
 
-  handleDateChange = e => {
+  handleBirthday = e => {
     this.setState({
-      DOB: e.target.value
+      birthday: e.target.value
     });
+  };
+
+  handleNewName = e => {
+    this.setState({
+      name: e.target.value
+    });
+    console.log("WOOP", this.state.name);
   };
 
   render() {
     return (
       <div className="row">
-        <div
-          className={
-            this.state.showModal ? "modal  isVisible blacktext" : "modal "
-          }
-          id="modalEditForm"
-          tabIndex="-1"
-          role="dialog"
-          aria-labelledby="myModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-header text-center">
-                <h4 className="modal-title w-100 font-weight-bold">
-                  Add Birthday
-                </h4>
-                <button
-                  type="button"
-                  className="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                  onClick={this.handleModalDismiss}
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div className="modal-body mx-3">
-                <div className="md-form">
-                  <i className="fas fa-pencil prefix grey-text"></i>
-                  <textarea
-                    type="text"
-                    id="form8"
-                    className="md-textarea form-control"
-                    rows="4"
-                    placeholder={this.props.text}
-                    value={this.state.noteText}
-                    onChange={this.updateNoteText}
-                  ></textarea>
+        <div className="col-2">
+          <button
+            id="addButton"
+            className="btn btn-info btn btn-md "
+            onClick={this.handleClick}
+          >
+            <i className="fa fa-plus"> </i>
+          </button>
+        </div>
+
+        <div className="row">
+          <div
+            className={
+              this.state.showModal ? "modal  isVisible blacktext" : "modal "
+            }
+            id="modalEditForm"
+            tabIndex="-1"
+            role="dialog"
+            aria-labelledby="myModalLabel"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog" role="document">
+              <div className="modal-content">
+                <div className="modal-header text-center">
+                  <h4 className="modal-title w-100 font-weight-bold">
+                    Add Birthday
+                  </h4>
+                  <button
+                    type="button"
+                    className="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                    onClick={this.handleModalDismiss}
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div className="modal-body mx-3">
+                  <div className="md-form">
+                    <label
+                      data-error="wrong"
+                      data-success="right"
+                      htmlFor="form8"
+                    >
+                      Name:
+                    </label>
+                    <textarea
+                      type="text"
+                      id="form8"
+                      className="md-textarea form-control"
+                      rows="1"
+                      placeholder="Name"
+                      onChange={this.handleNewName}
+                    ></textarea>
+                  </div>
+                  <br></br>
                   <label
                     data-error="wrong"
                     data-success="right"
                     htmlFor="form8"
                   >
-                    {this.props.text}
+                    Birthday:
                   </label>
+                  <div className="form-group mx-sm-3 mb-2">
+                    <input
+                      className="form-control"
+                      type="date"
+                      onChange={this.handleBirthday}
+                    ></input>
+                    <label
+                      data-error="wrong"
+                      data-success="right"
+                      htmlFor="form8"
+                    ></label>
+                  </div>
+
+                  <div className="md-form">
+                    <textarea
+                      type="text"
+                      id="form8"
+                      className="md-textarea form-control"
+                      rows="2"
+                      placeholder="Add notes here"
+                      onChange={this.updateNoteText}
+                    ></textarea>
+                    <label
+                      data-error="wrong"
+                      data-success="right"
+                      htmlFor="form8"
+                    ></label>
+                  </div>
                 </div>
-              </div>
-              <div className="modal-footer d-flex justify-content-center">
-                <button
-                  className="btn btn-unique"
-                  onClick={this.handleModalDismiss}
-                >
-                  Done
-                </button>
-              </div>
-            </div>
-            <div className="row">
-              <div className="col-2">
-                <button
-                  id="addButton"
-                  className="btn btn-info btn btn-md "
-                  onClick={this.handleClick}
-                >
-                  <i className="fa fa-plus"> </i>
-                </button>
+                <div className="modal-footer d-flex justify-content-center">
+                  <button
+                    className="btn btn-unique"
+                    onClick={this.handleClickAdd}
+                  >
+                    Done
+                  </button>
+                </div>
               </div>
             </div>
           </div>
