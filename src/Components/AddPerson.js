@@ -2,20 +2,36 @@ import React from "react";
 import "../App.css";
 import moment from "moment";
 import "font-awesome/css/font-awesome.min.css";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 class AddPerson extends React.Component {
   //initial state
   state = {
     name: "",
-    DOB: "",
-    InterestNote: ""
+    dateSelected: "",
+    noteText: "",
+    showModal: false
   };
 
   updateNoteText = event => {
     this.setState({
       newTaskText: event.target.value
+    });
+    console.log("hello");
+  };
+
+  handleClick = () => {
+    console.log("hi");
+    if (this.state.showModal === false) {
+      this.setState({
+        showModal: true
+      });
+      console.log(this.state.showModal);
+    }
+  };
+
+  handleModalDismiss = () => {
+    this.setState({
+      showModal: false
     });
   };
 
@@ -27,32 +43,61 @@ class AddPerson extends React.Component {
 
   render() {
     return (
-      <div className="row">
-        <div className="col-6">
-          <input
-            type="text"
-            className="form-control navbar addTaskTextArea"
-            aria-describedby="text"
-            placeholder="Add notes here"
-            value={this.state.InterestNote}
-            onChange={this.updateNoteText}
-          ></input>
-        </div>
-        <div className="col-5">
-          <div className="form-group mx-sm-3 mb-2">
-            <input
-              className="form-control navbar"
-              type="date"
-              onChange={this.handleDateChange}
-              value={this.state.DOB}
-            ></input>
+      <div className="col-2">
+        <div
+          className={this.state.showModal ? "modal isVisible" : "modal"}
+          tabIndex="-1"
+          role="dialog"
+        >
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title blacktext">Add Person </h5>
+                <button
+                  type="button"
+                  className="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                  onClick={this.handleModalDismiss}
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div className="modal-body lessMargin"></div>
+              <input
+                type="text"
+                className="form-control addTaskTextArea"
+                aria-describedby="text"
+                placeholder="Insert interests here!"
+                value={this.state.noteText}
+                onChange={this.updateNoteText}
+              ></input>
+
+              <div className="form-group mx-sm-3 mb-2">
+                <input
+                  className="form-control"
+                  type="date"
+                  onChange={this.handleDateChange}
+                  value={this.state.dateSelected}
+                ></input>
+              </div>
+            </div>
+            <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-dismiss="modal"
+                onClick={this.handleModalDismiss}
+              >
+                Done
+              </button>
+            </div>
           </div>
         </div>
-
         <div className="col-1">
           <button
             id="addButton"
-            className="btn btn-warning btn btn-md "
+            className="btn btn-info btn btn-md "
             onClick={this.handleClick}
           >
             <i className="fa fa-plus"> </i>

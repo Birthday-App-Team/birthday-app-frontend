@@ -15,7 +15,7 @@ class App extends React.Component {
         gender: "NB",
         notes: "Jane loves water skiing and karate",
         extend: false,
-        id: uuid()
+        id: 1
       },
       {
         name: "Akshay",
@@ -23,7 +23,7 @@ class App extends React.Component {
         gender: "M",
         notes: "Akshay like bollywood movies and lager",
         extend: false,
-        id: uuid()
+        id: 2
       },
       {
         name: "Tommy",
@@ -31,7 +31,7 @@ class App extends React.Component {
         gender: "M",
         notes: "Tommy collects Marvel figurines",
         extend: false,
-        id: uuid()
+        id: 3
       },
       {
         name: "Barbara",
@@ -39,7 +39,7 @@ class App extends React.Component {
         gender: "NB",
         notes: "Barbara loves Disney and playing football",
         extend: false,
-        id: uuid()
+        id: 4
       },
       {
         name: "Oscar",
@@ -48,7 +48,7 @@ class App extends React.Component {
         notes:
           "Oscar goes ballroom dancing twice a week. He mentioned needing a new hat",
         extend: false,
-        id: uuid()
+        id: 5
       }
     ]
   };
@@ -60,24 +60,55 @@ class App extends React.Component {
     return birthdays;
   };
 
-  // findAge =
+  //
+
+  undoTask = id => {
+    const updatedTasks = this.state.tasks.map(task => {
+      if (task.id === id) {
+        task.completed = false;
+      }
+
+      return task;
+    });
+
+    this.setState({
+      tasks: updatedTasks
+    });
+  };
+
+  editBirthday = (id, newBirthday) => {
+    console.log("hello");
+    if (newBirthday === "") {
+      return;
+    }
+    const birthdaysCopy = this.state.birthdays.slice();
+    birthdaysCopy.forEach(birthday => {
+      if (birthday.id === id) {
+        console.log("there");
+        birthday.notes = newBirthday;
+      }
+    });
+    console.log(birthdaysCopy);
+    this.setState({
+      birthdays: birthdaysCopy
+    });
+  };
 
   render() {
     console.log(this.state.birthdays.name);
     return (
       <div className=" App">
+        <AddPerson />
         <h1>
-          <span className="h1Letter">Happy Birthday App!</span>
-          <span className="list">
+          <span className="h1Letter">Birthday App</span>
+          <span>
             <u></u>
           </span>
-        </h1>
-        <h6>The joy of getting older!</h6>
+        </h1>{" "}
         <br></br>
         <div className="row">
           <div className="col-12">
             <br></br>
-            <AddPerson />
           </div>
         </div>
         <div className="row">
@@ -88,20 +119,20 @@ class App extends React.Component {
                   text={birthday.notes}
                   name={birthday.name}
                   key={birthday.id}
-                  id={birthday.TaskID}
+                  id={birthday.id}
                   dateOfBirth={birthday.DOB}
                   dropdown={birthday.extend}
+                  editBirthdayFunc={this.editBirthday}
                 />
               );
             })}
           </div>
         </div>
-        <div className="row">
+        {/* <div className="row">
           <div className="col-12">
             <PersonInfo Notes={this.state.birthdays.notes} />
           </div>
-        </div>
-
+        </div> */}
         <div className="row">
           <div className="col-12">
             <br></br>
