@@ -7,17 +7,10 @@ import "../App.js";
 class BirthdayList extends React.Component {
   state = {
     newBirthdayNote: "",
+    updatedName: "",
+    updatedDOB: "",
     showDropdown: false,
     showModal: false
-  };
-
-  editBirthday = birthday => {
-    console.log("Hi");
-    const newBirthdays = prompt("Update birthday", this.props.text);
-    this.props.editBirthdayFunc(this.props.id, newBirthdays);
-    console.log("id is" + this.props.id);
-    console.log(newBirthdays);
-    return newBirthdays;
   };
 
   handleDelete = e => {
@@ -25,7 +18,6 @@ class BirthdayList extends React.Component {
   };
 
   handleClickDropdown = () => {
-    console.log(this.state.showDropdown);
     if (this.state.showDropdown === false) {
       this.setState({
         showDropdown: true
@@ -37,20 +29,29 @@ class BirthdayList extends React.Component {
     }
   };
 
-  updateNoteText = event => {
+  handleBirthday = e => {
     this.setState({
-      newBirthdayNote: event.target.value
+      updatedDOB: e.target.value
     });
-    console.log("hello");
+  };
+
+  updateNameText = e => {
+    this.setState({
+      updatedName: e.target.value
+    });
+  };
+
+  updateNoteText = e => {
+    this.setState({
+      newBirthdayNote: e.target.value
+    });
   };
 
   handleClickEdit = () => {
-    console.log("hi");
     if (this.state.showModal === false) {
       this.setState({
         showModal: true
       });
-      console.log(this.state.showModal);
     }
   };
 
@@ -59,16 +60,15 @@ class BirthdayList extends React.Component {
   };
 
   handleModalDismiss = () => {
-    this.props.editBirthdayFunc(this.props.id, this.state.newBirthdayNote);
+    this.props.editBirthdayFunc(
+      this.props.id,
+      this.state.newBirthdayNote,
+      this.state.updatedName,
+      this.state.updatedDOB
+    );
 
     this.setState({
       showModal: false
-    });
-  };
-
-  handleDateChange = e => {
-    this.setState({
-      DOB: e.target.value
     });
   };
 
@@ -109,13 +109,46 @@ class BirthdayList extends React.Component {
                     data-success="right"
                     htmlFor="form8"
                   >
-                    {this.props.text}
+                    Edit name:
                   </label>
                   <textarea
                     type="text"
                     id="form8"
                     className="md-textarea form-control"
-                    rows="4"
+                    rows="1"
+                    placeholder={this.props.name}
+                    onChange={this.updateNameText}
+                  ></textarea>
+                </div>
+                <br></br>
+                <label data-error="wrong" data-success="right" htmlFor="form8">
+                  Edit birthday:
+                </label>
+                <div className="form-group mx-sm-3 mb-2">
+                  <input
+                    className="form-control"
+                    type="date"
+                    onChange={this.handleBirthday}
+                  ></input>
+                  <label
+                    data-error="wrong"
+                    data-success="right"
+                    htmlFor="form8"
+                  ></label>
+                </div>
+                <div className="md-form">
+                  <label
+                    data-error="wrong"
+                    data-success="right"
+                    htmlFor="form8"
+                  >
+                    Edit interests:
+                  </label>
+                  <textarea
+                    type="text"
+                    id="form8"
+                    className="md-textarea form-control"
+                    rows="2"
                     placeholder={this.props.text}
                     value={this.state.noteText}
                     onChange={this.updateNoteText}
