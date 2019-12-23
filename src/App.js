@@ -88,11 +88,8 @@ class App extends React.Component {
             birthday.interests = newNote;
             birthday.name = name;
             birthday.date_of_birth = DOB;
-            birthday.birthdayID = id;
-            return birthday;
-          } else {
-            return birthday;
           }
+          return birthday;
         });
         this.setState({
           birthdays: updatedBirthdays
