@@ -76,10 +76,16 @@ class App extends React.Component {
   };
 
   editBirthday = (id, newNote, name, DOB) => {
+    const editedBirthday = {
+      name: name,
+      date_of_birth: DOB,
+      interests: newNote
+    };
     axios
       .put(
         "https://gggyf4jhi4.execute-api.eu-west-1.amazonaws.com/dev/birthdays/" +
-          id
+          id,
+        editedBirthday
       )
       .then(response => {
         const updatedBirthdays = this.state.birthdays.map(birthday => {
