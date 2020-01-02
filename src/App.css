@@ -12,20 +12,10 @@ body {
 
 @media only screen and (max-width: 1600px) {
     body {
-      background-image: url("./media/cupcakes2.jpg");
-      background-size: cover;
-      object-fit: fill;
-      color: #FEDE5E;
+      background-color: #FEDE5E;
     }
   }
-@media only screen and (max-width: 1400px) {
-    body {
-      background-image: url("./media/blue-balloons.jpg");
-      background-size: cover;
-      object-fit: fill;
-      color:#FEDE5E;
-    }
-  }
+
 @media only screen and (max-width: 800px) {
     body {
       background-image: url("./media/1-Birthday-cupcakes1.jpg");
@@ -36,11 +26,20 @@ body {
   }
 @media only screen and (max-width: 400px) {
     body {
-      background-image: url("./media/birthday-party.jpg");
-      background-size: cover;
-      color: #FEDE5E;
+      color:rgba(253, 76, 224, 0.993);
     }
-  }
+    /* app {
+        text-align: center;
+        background-color:#FEDE5E;
+        opacity: 0.94; 
+        min-height: 400px;
+        width: 300px;
+        margin: 30px auto;
+        text-align: left;
+        border-radius: 18px;
+        padding: 20px; 
+    }   */
+    }
 
 .App {
     text-align: center;
