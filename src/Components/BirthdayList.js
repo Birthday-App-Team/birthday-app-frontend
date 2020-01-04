@@ -202,7 +202,7 @@ class BirthdayList extends React.Component {
           <div className="col-2">
             <button className="btn edit"
               onClick={this.handleClickEdit}
-            >EDIT</button>
+            > <i className="fa fa-pencil-square"/> </button>
           </div>
           <div className="col-1">
             <button className="btn delete"
