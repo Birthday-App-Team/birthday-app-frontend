@@ -123,7 +123,7 @@ class BirthdayList extends React.Component {
           {/* this is the EDIT modal */}
           <div
             className={
-              this.state.showModal ? "modal  isVisible blacktext" : "modal "
+              this.state.showModal ? "modal isVisible" : "modal "
             }
             id="modalEditForm"
             tabIndex="-1"
@@ -175,7 +175,7 @@ class BirthdayList extends React.Component {
                     <input
                       className="form-control"
                       type="date"
-                      // want it to show date from state!
+                      value={this.props.dateOfBirth.slice(0,10)}
                       onChange={this.updateBirthday}
                     ></input>
                     <label
