@@ -87,27 +87,11 @@ class BirthdayList extends React.Component {
 
   // DONE BUTTON:
   handleUpdate = () => {
-    let name, dob, interests;
-    if (this.state.updatedName === "") {
-      name = this.props.name
-    } else {
-      name = this.state.updatedName
-    }
-    if (this.state.updatedDOB === "") {
-      dob = this.props.dateOfBirth
-    } else {
-      dob = this.state.updatedDOB
-    }
-    if (this.state.updatedInterests === "") {
-      interests = this.props.text
-    } else {
-      interests = this.state.updatedInterests
-    }
     this.props.editBirthdayFunc(
       this.props.id,
-      name,
-      dob,
-      interests
+      this.state.updatedName,
+      this.state.updatedDOB,
+      this.state.updatedInterests
     )
     this.setState({
       showModal: false
