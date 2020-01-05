@@ -6,7 +6,7 @@ class BirthdayList extends React.Component {
 
   state = {
     updatedName: "",
-    updatedDOB: "",
+    updatedDOB: this.props.dateOfBirth.slice(0, 10),
     updatedInterests: "",
     showDropdown: false,
     showModal: false
@@ -197,12 +197,7 @@ class BirthdayList extends React.Component {
                     <input
                       className="form-control"
                       type="date"
-
-                      // "You want the value of the date provided by props to become the initial state of the component"
-
-                      // value={this.props.dateOfBirth.slice(0, 10)}
-                      // this works but can't edit it.
-
+                      value={this.state.updatedDOB}
                       onChange={this.updateBirthday}
                     ></input>
                     <label
