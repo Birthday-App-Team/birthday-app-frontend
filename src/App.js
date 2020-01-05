@@ -2,9 +2,10 @@ import React from "react";
 import "./App.css";
 import AddPerson from "./Components/AddPerson";
 import BirthdayList from "./Components/BirthdayList";
-// import PersonInfo from "./Components/PersonInfo";
-import Calendar from "./Components/Calendar";
+// // import PersonInfo from "./Components/PersonInfo";
+// import CalendarOld from "./Components/CalendarOld";
 import axios from "axios";
+// import Calendar from "react-calendar";
 
 class App extends React.Component {
   state = {
@@ -21,7 +22,6 @@ class App extends React.Component {
         this.setState({
           birthdays: birthdaysFromDB
         });
-        console.log(this.state.birthdays);
       })
       .catch(err => {
         console.log("Error getting tasks data", err);
@@ -104,6 +104,25 @@ class App extends React.Component {
       .catch(err => console.log("Error editing task", err));
   };
 
+  onDayClick = (e, day, m, y) => {
+    alert(day + m + y);
+    console.log(day + this.state.birthdays);
+  };
+
+  calendarDisplay = (date, view) => {
+    console.log("birthdays = " + this.state.birthdays);
+    const birthdaysOnDay = this.state.birthdays.filter(birthday => {
+      console.log("Name is " + birthday.name);
+      return date.getMonth() === birthday.date_of_birth.getMonth();
+    });
+    console.log("bdays " + birthdaysOnDay);
+    if (view === "month" && date.getDay() === 0)
+      console.log(birthdaysOnDay.name);
+    else {
+      return <p>hi</p>;
+    }
+  };
+
   render() {
     return (
       <div className=" App">
@@ -112,7 +131,14 @@ class App extends React.Component {
           <span className="h1Letter">Birthday App</span>
         </h1>{" "}
         <br></br>
-        {/* <Calendar className="calenderStyle calendar-container" /> */}
+        {/* <Calendar
+          tileContent={this.calendarDisplay}
+          onDaySelected={this.onDayClick}
+        /> */}
+        {/* <CalendarOld
+          className="calenderStyle calendar-container"
+          onDayClick={(e, day, m, y) => this.onDayClick(e, day, m, y)}
+        /> */}
         <div className="row">
           <div className="col-12">
             <br></br>

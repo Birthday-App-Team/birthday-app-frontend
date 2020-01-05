@@ -129,6 +129,7 @@ class BirthdayList extends React.Component {
                     className="form-control"
                     type="date"
                     onChange={this.handleBirthday}
+                    toDisplay={this.props.dateOfBirth}
                   ></input>
                   <label
                     data-error="wrong"
