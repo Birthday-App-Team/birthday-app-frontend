@@ -107,7 +107,7 @@ class App extends React.Component {
   };
 
   // PUT
-  editBirthday = (id, newNote, name, DOB) => {
+  editBirthday = (id, name, DOB, newNote) => {
     const editedBirthday = {
       name: name,
       date_of_birth: DOB,
@@ -121,7 +121,7 @@ class App extends React.Component {
       )
       .then(response => {
         const updatedBirthdays = this.state.birthdays.map(birthday => {
-          console.log(response);
+          // console.log(response);
           if (birthday.birthdayID === id) {
             birthday.interests = newNote;
             birthday.name = name;

@@ -5,9 +5,9 @@ import "../App.js";
 class BirthdayList extends React.Component {
 
   state = {
-    newBirthdayNote: "",
     updatedName: "",
     updatedDOB: "",
+    updatedInterests: "",
     showDropdown: false,
     showModal: false
   };
@@ -30,10 +30,12 @@ class BirthdayList extends React.Component {
     }
   }
 
+  // DELETE BUTTON
   handleClickDelete = () => {
     this.props.deleteBirthdayFunc(this.props.id);
   };
 
+  // DROPDOWN BUTTON
   handleClickDropdown = () => {
     if (this.state.showDropdown === false) {
       this.setState({
@@ -46,7 +48,7 @@ class BirthdayList extends React.Component {
     }
   };
 
-  // FUNCTION FOR EDITING BIRTHDAYS:
+  // EDIT BUTTON (SHOWS MODAL):
   handleClickEdit = () => {
     if (this.state.showModal === false) {
       this.setState({
@@ -55,35 +57,58 @@ class BirthdayList extends React.Component {
     }
   };
 
-  // FUNCTION FOR EDITING BIRTHDAYS:
-  handleBirthday = e => {
-    this.setState({
-      updatedDOB: e.target.value
-    });
-  };
-
-  // FUNCTION FOR EDITING BIRTHDAYS:
-  updateNameText = e => {
+  // EDIT NAME:
+  updateName = e => {
     this.setState({
       updatedName: e.target.value
     });
   };
 
-  // FUNCTION FOR EDITING BIRTHDAYS:
-  updateNoteText = e => {
+  // EDIT DOB:
+  updateBirthday = e => {
     this.setState({
-      newBirthdayNote: e.target.value
+      updatedDOB: e.target.value
     });
   };
 
-  // FUNCTION FOR EDITING BIRTHDAYS:
+  // EDIT INTERESTS:
+  updateInterests = e => {
+    this.setState({
+      updatedInterests: e.target.value
+    });
+  };
+
+  // X BUTTON (DISMISS MODAL WITHOUT ANY CHANGES):
   handleModalDismiss = () => {
+    this.setState({
+      showModal: false
+    });
+  };
+
+  // DONE BUTTON:
+  handleUpdate = () => {
+    let name, dob, interests;
+    if (this.state.updatedName === "") {
+      name = this.props.name
+    } else {
+      name = this.state.updatedName
+    }
+    if (this.state.updatedDOB === "") {
+      dob = this.props.dateOfBirth
+    } else {
+      dob = this.state.updatedDOB
+    }
+    if (this.state.updatedInterests === "") {
+      interests = this.props.text
+    } else {
+      interests = this.state.updatedInterests
+    }
     this.props.editBirthdayFunc(
       this.props.id,
-      this.state.newBirthdayNote,
-      this.state.updatedName,
-      this.state.updatedDOB
-    );
+      name,
+      dob,
+      interests
+    )
     this.setState({
       showModal: false
     });
@@ -95,97 +120,101 @@ class BirthdayList extends React.Component {
       <div className="container">
         <div className="row">
 
-        {/* this is the EDIT modal */}
-        <div
-          className={
-            this.state.showModal ? "modal  isVisible blacktext" : "modal "
-          }
-          id="modalEditForm"
-          tabIndex="-1"
-          role="dialog"
-          aria-labelledby="myModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog" role="document">
-            <div className="modal-content">
-              <div className="modal-header text-center">
-                <h4 className="modal-title makeItPink">
-                  Edit {this.props.name}'s info
+          {/* this is the EDIT modal */}
+          <div
+            className={
+              this.state.showModal ? "modal  isVisible blacktext" : "modal "
+            }
+            id="modalEditForm"
+            tabIndex="-1"
+            role="dialog"
+            aria-labelledby="myModalLabel"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog" role="document">
+              <div className="modal-content">
+                <div className="modal-header text-center">
+                  <h4 className="modal-title makeItPink">
+                    Edit {this.props.name}'s info
                 </h4>
-                <button
-                  type="button"
-                  className="close"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                  onClick={this.handleModalDismiss}
-                >
-                  <span aria-hidden="true" className="makeItPink">&times;</span>
-                </button>
-              </div>
-              <div className="modal-body mx-3">
-                <div className="md-form">
-                  <label
-                    data-error="wrong"
-                    data-success="right"
-                    htmlFor="form8"
+                  <button
+                    type="button"
+                    className="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                    onClick={this.handleModalDismiss}
                   >
-                    Edit name:
-                  </label>
-                  <textarea
-                    type="text"
-                    id="form8"
-                    className="md-textarea form-control"
-                    rows="1"
-                    placeholder={this.props.name}
-                    onChange={this.updateNameText}
-                  ></textarea>
+                    <span aria-hidden="true" className="makeItPink">&times;</span>
+                  </button>
                 </div>
-                <br></br>
-                <label data-error="wrong" data-success="right" htmlFor="form8">
-                  Edit birthday:
+                <div className="modal-body mx-3">
+                  <div className="md-form">
+                    <label
+                      data-error="wrong"
+                      data-success="right"
+                      htmlFor="form8"
+                    >
+                      Edit name:
+                  </label>
+                    {/* EDIT NAME */}
+                    <textarea
+                      type="text"
+                      id="form8"
+                      className="md-textarea form-control"
+                      rows="1"
+                      placeholder={this.props.name}
+                      onChange={this.updateName}
+                    ></textarea>
+                  </div>
+                  <br></br>
+                  <label data-error="wrong" data-success="right" htmlFor="form8">
+                    Edit birthday:
                 </label>
-                <div className="form-group mx-sm-3 mb-2">
-                  <input
-                    className="form-control"
-                    type="date"
-                    onChange={this.handleBirthday}
-                  ></input>
-                  <label
-                    data-error="wrong"
-                    data-success="right"
-                    htmlFor="form8"
-                  ></label>
-                </div>
-                <div className="md-form">
-                  <label
-                    data-error="wrong"
-                    data-success="right"
-                    htmlFor="form8"
-                  >
-                    Edit interests:
+                  <div className="form-group mx-sm-3 mb-2">
+                    {/* EDIT DATE */}
+                    <input
+                      className="form-control"
+                      type="date"
+                      // want it to show date from state!
+                      onChange={this.updateBirthday}
+                    ></input>
+                    <label
+                      data-error="wrong"
+                      data-success="right"
+                      htmlFor="form8"
+                    ></label>
+                  </div>
+                  <div className="md-form">
+                    <label
+                      data-error="wrong"
+                      data-success="right"
+                      htmlFor="form8"
+                    >
+                      Edit interests:
                   </label>
-                  <textarea
-                    type="text"
-                    id="form8"
-                    className="md-textarea form-control"
-                    rows="2"
-                    placeholder={this.props.text}
-                    value={this.state.noteText}
-                    onChange={this.updateNoteText}
-                  ></textarea>
+                    {/* EDIT INTERESTS */}
+                    <textarea
+                      type="text"
+                      id="form8"
+                      className="md-textarea form-control"
+                      rows="2"
+                      placeholder={this.props.text}
+                      onChange={this.updateInterests}
+                    ></textarea>
+                  </div>
                 </div>
-              </div>
-              <div className="modal-footer d-flex justify-content-center">
-                <button
-                  className="btn btn-unique done-button"
-                  onClick={this.handleModalDismiss}
-                >
-                  Done
+                <div className="modal-footer d-flex justify-content-center">
+                  {/* DONE BUTTON */}
+                  <button
+                    className="btn btn-unique done-button"
+                    onClick={this.handleUpdate}
+                  >
+                    Done
                 </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
           {/* this is each BIRTHDAY */}
           <div className="col-5">
@@ -235,7 +264,7 @@ class BirthdayList extends React.Component {
                 </button>
 
                 <button type="button" className="btn envelope mx-2">
-                    <i className="fa fa-envelope"></i>
+                  <i className="fa fa-envelope"></i>
                 </button>
 
               </div>
