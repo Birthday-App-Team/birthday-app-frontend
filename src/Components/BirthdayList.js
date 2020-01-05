@@ -114,6 +114,28 @@ class BirthdayList extends React.Component {
     });
   };
 
+  // AMAZON GIFTS LINKS:
+  giftByAge = () => {
+    if (this.props.nextAge < 2) {
+      return "https://www.amazon.co.uk/b?ie=UTF8&node=8661766031"
+    } 
+    else if (this.props.nextAge >= 2 && this.props.nextAge <= 3 ) {
+      return "https://www.amazon.co.uk/gcx/Gifts-for-Toddlers/gfhz/?categoryId=toddler-neutral"
+    } 
+    else if (this.props.nextAge >= 4 && this.props.nextAge <= 7 ) {
+      return "https://www.amazon.co.uk/gcx/Gifts-for-Kids-4-7/gfhz/?categoryId=kid4-neutral"
+    } 
+    else if (this.props.nextAge >= 8 && this.props.nextAge <= 12 ) {
+      return "https://www.amazon.com/gcx/Gifts-for-Kids-8-12/gfhz/?categoryId=kid8-neutral"
+    }
+    else if (this.props.nextAge >= 13 && this.props.nextAge <= 17 ) {
+      return "https://www.amazon.com/gcx/Gifts-for-Teens/gfhz/?categoryId=teen-neutral"
+    } 
+    else {
+      return "https://www.amazon.co.uk/gcx/Gifts-for-Everyone/gfhz/?categoryId=adult-neutral"
+    }
+  }
+
   render() {
     return (
 
@@ -175,7 +197,12 @@ class BirthdayList extends React.Component {
                     <input
                       className="form-control"
                       type="date"
-                      value={this.props.dateOfBirth.slice(0,10)}
+
+                      // "You want the value of the date provided by props to become the initial state of the component"
+
+                      // value={this.props.dateOfBirth.slice(0, 10)}
+                      // this works but can't edit it.
+
                       onChange={this.updateBirthday}
                     ></input>
                     <label
@@ -251,14 +278,7 @@ class BirthdayList extends React.Component {
                 <span className="card interests">INTERESTS: {this.props.text}</span>
 
                 <button type="button" className="btn gift ml-2">
-                  <a
-                    href={
-                      (this.props.nextAge, "years") > 12
-                        ? "https://www.amazon.com/s?k=gift&ref=nb_sb_noss_2"
-                        : "https://www.amazon.com/gcx/Gifts-for-Kids-4-7/gfhz/?canBeGiftWrapped=false&categoryId=kid4-neutral&isPrime=false&starRatingFrom=0"
-                    }
-                    target="blank"
-                  >
+                  <a href={this.giftByAge()} target="blank">
                     <i className="fa fa-gift"></i>
                   </a>
                 </button>
