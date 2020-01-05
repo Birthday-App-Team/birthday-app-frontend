@@ -5,9 +5,9 @@ import "../App.js";
 class BirthdayList extends React.Component {
 
   state = {
-    updatedName: "",
+    updatedName: this.props.name,
     updatedDOB: this.props.dateOfBirth.slice(0, 10),
-    updatedInterests: "",
+    updatedInterests: this.props.text,
     showDropdown: false,
     showModal: false
   };
@@ -184,7 +184,7 @@ class BirthdayList extends React.Component {
                       id="form8"
                       className="md-textarea form-control"
                       rows="1"
-                      placeholder={this.props.name}
+                      value={this.state.updatedName}
                       onChange={this.updateName}
                     ></textarea>
                   </div>
@@ -220,7 +220,7 @@ class BirthdayList extends React.Component {
                       id="form8"
                       className="md-textarea form-control"
                       rows="2"
-                      placeholder={this.props.text}
+                      value={this.state.updatedInterests}
                       onChange={this.updateInterests}
                     ></textarea>
                   </div>
