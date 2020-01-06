@@ -23,7 +23,7 @@ body {
 }
 
 .logo {
-    float: right;
+    float: center;
 }
 
 .add-button {
@@ -62,7 +62,7 @@ body {
 }
 
 .delete {
-    float: right;
+    float: left;
     color: #FEDE5E;
     background-color: rgb(101, 129, 255);
     text-align: center;
@@ -219,16 +219,24 @@ a:hover {
 }
 
 
-    @media only screen and (max-width: 350px) {
+    @media only screen and (max-width: 400px) {
     body {
-        color:red;
-        width: 90%;
-  }
+            background-image: url("./media/birthday-party.jpg");
+            background-size: auto;
+            object-fit: fill;
+            color: #FEDE5E;
+          }
     }
+    .App {
+         width: 90%;
+         box-align: auto;
+
+  }
+    
   
-    @media only screen and (min-width: 401px) and (max-width: 960px) {
+    @media only screen and (min-width: 401px) and (max-width: 1600px) {
     body {
-            background-image: url("./media/blue-balloons.jpg");
+            background-image: url("./media/birthday-party.jpg");
             background-size: cover;
             object-fit: fill;
             color: #FEDE5E;
