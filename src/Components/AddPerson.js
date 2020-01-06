@@ -1,8 +1,8 @@
-import React from "react";
-import "../App.css";
-import "font-awesome/css/font-awesome.min.css";
+import React from 'react';
+import '../App.css';
 
 class AddPerson extends React.Component {
+
   //initial state
   state = {
     name: "",
@@ -13,40 +13,34 @@ class AddPerson extends React.Component {
     birthday: ""
   };
 
+  // shows modal
+  handleClick = () => {
+    this.setState({
+      showModal: true
+    });
+  };
+
+  // hides modal
+  handleModalDismiss = () => {
+    this.setState({
+      showModal: false
+    });
+  };
+
   handleClickAdd = () => {
     this.props.addBirthdayFunc(
       this.state.name,
       this.state.birthday,
       this.state.note,
-      this.state.gender
     );
-    console.log("hi add", this.state.name);
-
     this.setState({
       showModal: false
     });
   };
 
-  updateNoteText = event => {
+  updateNoteText = e => {
     this.setState({
-      note: event.target.value
-    });
-    console.log("hello");
-  };
-
-  handleClick = () => {
-    console.log("hi");
-    if (this.state.showModal === false) {
-      this.setState({
-        showModal: true
-      });
-      console.log(this.state.showModal);
-    }
-  };
-
-  handleModalDismiss = () => {
-    this.setState({
-      showModal: false
+      note: e.target.value
     });
   };
 
@@ -60,27 +54,35 @@ class AddPerson extends React.Component {
     this.setState({
       name: e.target.value
     });
+  };
+
+  handleNewName = e => {
+    this.setState({
+      name: e.target.value
+    });
     console.log("WOOP", this.state.name);
   };
 
   render() {
     return (
-      <div className="row">
+
+      <div>
         <div className="col-2">
           <button
             id="addButton"
-            className="btn btn-info btn btn-md "
+            className="btn add-button"
             onClick={this.handleClick}
           >
             <i className="fa fa-plus"> </i>
           </button>
         </div>
 
+
+        {/* ADD modal */}
         <div className="row">
           <div
-            className={
-              this.state.showModal ? "modal  isVisible blacktext" : "modal "
-            }
+            className={this.state.showModal ? "modal isVisible" : "modal"}
+
             id="modalEditForm"
             tabIndex="-1"
             role="dialog"
@@ -90,9 +92,10 @@ class AddPerson extends React.Component {
             <div className="modal-dialog" role="document">
               <div className="modal-content">
                 <div className="modal-header text-center">
-                  <h4 className="modal-title w-100 font-weight-bold">
-                    Add Birthday
-                  </h4>
+
+                  <span className="makeItPink">
+                    add a birthday...
+                  </span>
                   <button
                     type="button"
                     className="close"
@@ -100,7 +103,7 @@ class AddPerson extends React.Component {
                     aria-label="Close"
                     onClick={this.handleModalDismiss}
                   >
-                    <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true" className="makeItPink">&times;</span>
                   </button>
                 </div>
                 <div className="modal-body mx-3">
@@ -160,7 +163,7 @@ class AddPerson extends React.Component {
                 </div>
                 <div className="modal-footer d-flex justify-content-center">
                   <button
-                    className="btn btn-unique"
+                    className="btn btn-unique done-button"
                     onClick={this.handleClickAdd}
                   >
                     Done
@@ -171,7 +174,9 @@ class AddPerson extends React.Component {
           </div>
         </div>
       </div>
-    );
+    )
   }
+
 }
+
 export default AddPerson;

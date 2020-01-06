@@ -1,22 +1,21 @@
-import React from "react";
-import "./App.css";
-import AddPerson from "./Components/AddPerson";
-import BirthdayList from "./Components/BirthdayList";
-// // import PersonInfo from "./Components/PersonInfo";
-// import CalendarOld from "./Components/CalendarOld";
+import React from 'react';
+import BirthdayList from './Components/BirthdayList';
+import AddPerson from './Components/AddPerson';
+import logo from './logo.png';
+import './App.css';
 import axios from "axios";
-// import Calendar from "react-calendar";
+import moment from "moment";
 
 class App extends React.Component {
+
   state = {
     birthdays: []
   };
 
   componentDidMount() {
-    axios
-      .get(
-        "https://gggyf4jhi4.execute-api.eu-west-1.amazonaws.com/dev/birthdays"
-      )
+    axios.get(
+      "https://gggyf4jhi4.execute-api.eu-west-1.amazonaws.com/dev/birthdays"
+    )
       .then(response => {
         const birthdaysFromDB = response.data;
         this.setState({
@@ -28,40 +27,47 @@ class App extends React.Component {
       });
   }
 
-  addBirthday = (name, birthday, note) => {
-    const birthdaysCopy = this.state.birthdays.slice();
-    const newBirthday = {
-      name: name,
-      date_of_birth: birthday,
-      interests: note
-    };
+  // calculates "nextBirthday" and "nextAge" and adds to the state as new properties
+  calcNextBirthdayAndAge = birthdays => {
+    const nextBirthdays = birthdays.map(birthday => {
+      const dobMoment = moment(birthday.date_of_birth);
+      const nowMoment = moment().startOf("day");
+      const nextAge = nowMoment.diff(birthday.date_of_birth, "years") + 1;
+      birthday.nextAge = nextAge;
+      birthday.nextBirthday = dobMoment.add(nextAge, "years");
+      return birthday;
+    });
+    return nextBirthdays;
+  }
 
-    axios
-      .post(
-        "https://gggyf4jhi4.execute-api.eu-west-1.amazonaws.com/dev/birthdays",
-        newBirthday
-      )
-      .then(response => {
-        console.log("this is response:", response);
+  // checks for any birthdays that are today and adds "isBirthdayToday = true/false" to the state as new property
+  identifyBirthdaysToday = birthdays => {
+    const nextBirthdays = birthdays.map(birthday => {
+      const nowMoment = moment().format("MM-DD");
+      const nextBirthday = birthday.nextBirthday.format("MM-DD");
+      birthday.isBirthdayToday = false;
+      if (nowMoment === nextBirthday) {
+        birthday.isBirthdayToday = true;
+        birthday.nextBirthday = birthday.nextBirthday.subtract(1, "years");
+        birthday.nextAge = birthday.nextAge - 1;
+      };
+      return birthday;
+    });
+    return nextBirthdays;
+  }
 
-        const birthdayFromDB = response.data;
-        birthdaysCopy.push(birthdayFromDB);
-        this.setState({
-          birthdays: birthdaysCopy
-        });
-        console.log(birthdaysCopy);
-      })
-      .catch(err => {
-        console.log("Error creating birthday", err);
-      });
-  };
+  // sorts birthdays in order of next up birthday (sorting "nextBirthday" - a moment object)
+  sortBirthdays = birthdays => {
+    birthdays.sort((a, b) => {
+      return a.nextBirthday.isAfter(b.nextBirthday) ? 1 : -1
+    })
+    return birthdays;
+  }
 
+  // DELETE
   deleteBirthday = id => {
-    axios
-      .delete(
-        "https://gggyf4jhi4.execute-api.eu-west-1.amazonaws.com/dev/birthdays/" +
-          id
-      )
+    axios.delete(
+        "https://gggyf4jhi4.execute-api.eu-west-1.amazonaws.com/dev/birthdays/" + id      )
       .then(response => {
         console.log("this is response:", response);
         const birthdaysNotDel = this.state.birthdays.filter(birthday => {
@@ -75,7 +81,32 @@ class App extends React.Component {
       .catch(err => console.log("Error deleting birthday", err));
   };
 
-  editBirthday = (id, newNote, name, DOB) => {
+
+  // POST
+  addBirthday = (name, birthday, note) => {
+    const birthdaysCopy = this.state.birthdays.slice();
+    const newBirthday = {
+      name: name,
+      date_of_birth: birthday,
+      interests: note
+    };
+    axios.post(
+        "https://gggyf4jhi4.execute-api.eu-west-1.amazonaws.com/dev/birthdays",
+        newBirthday
+      )
+      .then(response => {
+        const birthdayFromDB = response.data;
+        birthdaysCopy.push(birthdayFromDB);
+        this.setState({
+          birthdays: birthdaysCopy
+        });
+      })
+      .catch(err => {
+        console.log("Error creating birthday", err);
+      });
+
+  // PUT
+  editBirthday = (id, name, DOB, newNote) => {
     const editedBirthday = {
       name: name,
       date_of_birth: DOB,
@@ -89,7 +120,7 @@ class App extends React.Component {
       )
       .then(response => {
         const updatedBirthdays = this.state.birthdays.map(birthday => {
-          console.log(response);
+          // console.log(response);
           if (birthday.birthdayID === id) {
             birthday.interests = newNote;
             birthday.name = name;
@@ -103,6 +134,7 @@ class App extends React.Component {
       })
       .catch(err => console.log("Error editing task", err));
   };
+
 
   onDayClick = (e, day, m, y) => {
     alert(day + m + y);
@@ -121,16 +153,12 @@ class App extends React.Component {
     else {
       return <p>hi</p>;
     }
-  };
 
+  };
   render() {
     return (
-      <div className=" App">
-        <AddPerson addBirthdayFunc={this.addBirthday} />
-        <h1>
-          <span className="h1Letter">Birthday App</span>
-        </h1>{" "}
-        <br></br>
+
+      <div className="App container">
         {/* <Calendar
           tileContent={this.calendarDisplay}
           onDaySelected={this.onDayClick}
@@ -140,36 +168,41 @@ class App extends React.Component {
           onDayClick={(e, day, m, y) => this.onDayClick(e, day, m, y)}
         /> */}
         <div className="row">
-          <div className="col-12">
-            <br></br>
+          <AddPerson addBirthdayFunc={this.addBirthday}/>
+          <div className="col-10">
+            <img src={logo} alt="birthdaze logo" className="logo" width="233" height="87" />
           </div>
         </div>
+
+
         <div className="row">
           <div className="col-12">
-            {this.state.birthdays.map(birthday => {
+            <hr className="rule" />
+            {this.sortBirthdays(this.identifyBirthdaysToday(this.calcNextBirthdayAndAge(this.state.birthdays))).map(birthday => {
               return (
                 <BirthdayList
-                  text={birthday.interests}
                   name={birthday.name}
+                  dateOfBirth={birthday.date_of_birth}
+                  text={birthday.interests}
                   key={birthday.birthdayID}
                   id={birthday.birthdayID}
-                  dateOfBirth={birthday.date_of_birth}
+                  nextBirthday={birthday.nextBirthday}
+                  nextAge={birthday.nextAge}
+                  isBirthdayToday={birthday.isBirthdayToday}
+                  deleteBirthdayFunc={this.deleteBirthday}
                   editBirthdayFunc={this.editBirthday}
                   deleteBirthdayFunc={this.deleteBirthday}
                 />
               );
             })}
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-12">
-            <br></br>
-            <br></br>
+            <hr className="rule" />
+
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
+
 
 export default App;
