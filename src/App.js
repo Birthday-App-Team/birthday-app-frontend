@@ -1,111 +1,197 @@
 import React from "react";
-import uuid from "uuid/v4";
-import "./App.css";
-import moment from "moment";
-import AddPerson from "./Components/AddPerson.js";
 import BirthdayList from "./Components/BirthdayList";
-import PersonInfo from "./Components/PersonInfo";
+import AddPerson from "./Components/AddPerson";
+import logo from "./logo.png";
+import "./App.css";
+import axios from "axios";
+import moment from "moment";
+import CalendarComponent from "./Components/CalendarComponent";
 
 class App extends React.Component {
   state = {
-    birthdays: [
-      {
-        name: "Jane",
-        DOB: "1976-12-12",
-        gender: "NB",
-        notes: "Jane loves water skiing and karate",
-        extend: false,
-        id: uuid()
-      },
-      {
-        name: "Akshay",
-        DOB: "1997-04-23",
-        gender: "M",
-        notes: "Akshay like bollywood movies and lager",
-        extend: false,
-        id: uuid()
-      },
-      {
-        name: "Tommy",
-        DOB: "1995-01-06",
-        gender: "M",
-        notes: "Tommy collects Marvel figurines",
-        extend: false,
-        id: uuid()
-      },
-      {
-        name: "Barbara",
-        DOB: "2009-03-25",
-        gender: "NB",
-        notes: "Barbara loves Disney and playing football",
-        extend: false,
-        id: uuid()
-      },
-      {
-        name: "Oscar",
-        DOB: "1956-09-01",
-        gender: "NB",
-        notes:
-          "Oscar goes ballroom dancing twice a week. He mentioned needing a new hat",
-        extend: false,
-        id: uuid()
-      }
-    ]
+    birthdays: []
   };
 
-  showBirthdays = id => {
-    const birthdays = this.state.tasks.map(task => {
-      return task;
+  componentDidMount() {
+    axios
+      .get(
+        "https://gggyf4jhi4.execute-api.eu-west-1.amazonaws.com/dev/birthdays"
+      )
+      .then(response => {
+        const birthdaysFromDB = response.data;
+        this.setState({
+          birthdays: birthdaysFromDB
+        });
+      })
+      .catch(err => {
+        console.log("Error getting tasks data", err);
+      });
+  }
+
+  // calculates "nextBirthday" and "nextAge" and adds to the state as new properties
+  calcNextBirthdayAndAge = birthdays => {
+    const nextBirthdays = birthdays.map(birthday => {
+      const dobMoment = moment(birthday.date_of_birth);
+      const nowMoment = moment().startOf("day");
+      const nextAge = nowMoment.diff(birthday.date_of_birth, "years") + 1;
+      birthday.nextAge = nextAge;
+      birthday.nextBirthday = dobMoment.add(nextAge, "years");
+      return birthday;
+    });
+    return nextBirthdays;
+  };
+
+  // checks for any birthdays that are today and adds "isBirthdayToday = true/false" to the state as new property
+  identifyBirthdaysToday = birthdays => {
+    const nextBirthdays = birthdays.map(birthday => {
+      const nowMoment = moment().format("MM-DD");
+      const nextBirthday = birthday.nextBirthday.format("MM-DD");
+      birthday.isBirthdayToday = false;
+      if (nowMoment === nextBirthday) {
+        birthday.isBirthdayToday = true;
+        birthday.nextBirthday = birthday.nextBirthday.subtract(1, "years");
+        birthday.nextAge = birthday.nextAge - 1;
+      }
+      return birthday;
+    });
+    return nextBirthdays;
+  };
+
+  // sorts birthdays in order of next up birthday (sorting "nextBirthday" - a moment object)
+  sortBirthdays = birthdays => {
+    birthdays.sort((a, b) => {
+      return a.nextBirthday.isAfter(b.nextBirthday) ? 1 : -1;
     });
     return birthdays;
   };
 
-  // findAge =
+  // DELETE
+  deleteBirthday = id => {
+    axios
+      .delete(
+        "https://gggyf4jhi4.execute-api.eu-west-1.amazonaws.com/dev/birthdays/" +
+          id
+      )
+      .then(response => {
+        console.log("this is response:", response);
+        const birthdaysNotDel = this.state.birthdays.filter(birthday => {
+          return birthday.birthdayID !== id;
+        });
+        this.setState({
+          birthdays: birthdaysNotDel
+        });
+        console.log(this.state.birthdays);
+      })
+      .catch(err => console.log("Error deleting birthday", err));
+  };
+
+  // POST
+  addBirthday = (name, birthday, note, number) => {
+    const birthdaysCopy = this.state.birthdays.slice();
+    const newBirthday = {
+      name: name,
+      date_of_birth: birthday,
+      interests: note,
+      phone_number: number
+    };
+    axios
+      .post(
+        "https://gggyf4jhi4.execute-api.eu-west-1.amazonaws.com/dev/birthdays",
+        newBirthday
+      )
+      .then(response => {
+        const birthdayFromDB = response.data;
+        birthdaysCopy.push(birthdayFromDB);
+        this.setState({
+          birthdays: birthdaysCopy
+        });
+      })
+      .catch(err => {
+        console.log("Error creating birthday", err);
+      });
+  };
+
+  // PUT
+  editBirthday = (id, name, DOB, newNote) => {
+    const editedBirthday = {
+      name: name,
+      date_of_birth: DOB,
+      interests: newNote
+    };
+    axios
+      .put(
+        "https://gggyf4jhi4.execute-api.eu-west-1.amazonaws.com/dev/birthdays/" +
+          id,
+        editedBirthday
+      )
+      .then(response => {
+        const updatedBirthdays = this.state.birthdays.map(birthday => {
+          // console.log(response);
+          if (birthday.birthdayID === id) {
+            birthday.interests = newNote;
+            birthday.name = name;
+            birthday.date_of_birth = DOB;
+          }
+          return birthday;
+        });
+        this.setState({
+          birthdays: updatedBirthdays
+        });
+      })
+      .catch(err => console.log("Error editing task", err));
+  };
+
+  consoleLogThis = () => {
+    console.log(this.state.birthdays);
+  };
 
   render() {
-    console.log(this.state.birthdays.name);
     return (
-      <div className=" App">
-        <h1>
-          <span className="h1Letter">Happy Birthday App!</span>
-          <span className="list">
-            <u></u>
-          </span>
-        </h1>
-        <h6>The joy of getting older!</h6>
-        <br></br>
+      <div className="App container">
         <div className="row">
-          <div className="col-12">
-            <br></br>
-            <AddPerson />
+          <AddPerson addBirthdayFunc={this.addBirthday} />
+          <div className="col-10">
+            <img
+              src={logo}
+              alt="birthdaze logo"
+              className="logo"
+              width="233"
+              height="87"
+            />
           </div>
         </div>
+        <div>
+          <CalendarComponent
+            birthdays={this.state.birthdays}
+            consoleLogFunc={this.consoleLogThis}
+          />
+        </div>
+
         <div className="row">
           <div className="col-12">
-            {this.state.birthdays.map(birthday => {
+            <hr className="rule" />
+            {this.sortBirthdays(
+              this.identifyBirthdaysToday(
+                this.calcNextBirthdayAndAge(this.state.birthdays)
+              )
+            ).map(birthday => {
               return (
                 <BirthdayList
-                  text={birthday.notes}
                   name={birthday.name}
-                  key={birthday.id}
-                  id={birthday.TaskID}
-                  dateOfBirth={birthday.DOB}
-                  dropdown={birthday.extend}
+                  dateOfBirth={birthday.date_of_birth}
+                  text={birthday.interests}
+                  number={birthday.phone_number}
+                  key={birthday.birthdayID}
+                  id={birthday.birthdayID}
+                  nextBirthday={birthday.nextBirthday}
+                  nextAge={birthday.nextAge}
+                  isBirthdayToday={birthday.isBirthdayToday}
+                  deleteBirthdayFunc={this.deleteBirthday}
+                  editBirthdayFunc={this.editBirthday}
                 />
               );
             })}
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-12">
-            <PersonInfo Notes={this.state.birthdays.notes} />
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col-12">
-            <br></br>
-            <br></br>
+            <hr className="rule" />
           </div>
         </div>
       </div>

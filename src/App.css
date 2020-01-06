@@ -1,52 +1,242 @@
+/* birthdaze logo colours:
+    blue:   #5271FF;
+    yellow: #FEDE5E;
+    pink:   #FE66BE;
+    turq:   #5CE1E6;
+ */
+
+body {
+    background-color: #FEDE5E;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+@media only screen and (max-width: 1600px) {
+    body {
+      background-image: url("./media/cupcakes2.jpg");
+      background-size: cover;
+      object-fit: fill;
+      color: #FEDE5E;
+    }
+  }
+@media only screen and (max-width: 1400px) {
+    body {
+      background-image: url("./media/blue-balloons.jpg");
+      background-size: cover;
+      object-fit: fill;
+      color:#FEDE5E;
+    }
+  }
+@media only screen and (max-width: 800px) {
+    body {
+      background-image: url("./media/1-Birthday-cupcakes1.jpg");
+      background-size: cover;
+      object-fit: fill;
+      color: #FEDE5E;
+    }
+  }
+@media only screen and (max-width: 400px) {
+    body {
+      background-image: url("./media/birthday-party.jpg");
+      background-size: cover;
+      color: #FEDE5E;
+    }
+  }
+
 .App {
-  text-align: center;
-  background-color: #e20ea3;
-  opacity: 0.9;
-  min-height: 600px;
-  width: 400px;
-  margin: 40px auto;
-  text-align: left;
-  padding: 20px;
-  box-shadow: 10px 10px 5px 0px whitesmoke;
-  -moz-box-shadow: 10px 10px 5px 0px rgb(241, 225, 225);
-  box-shadow: 10px 10px 5px 0px rgb(245, 200, 200);
+    text-align: center;
+    background-color: #5271FF;
+    opacity: 0.94; 
+    min-height: 800px;
+    width: 600px;
+    margin: 30px auto;
+    text-align: left;
+    border-radius: 18px;
+    padding: 20px; 
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.logo {
+    float: right;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.add-button {
+    color: #FEDE5E;
+    text-align: center;
+    font-size: 2em;
+    width: 63px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.add-button:hover,
+.add-button:focus {
+    color: #FEDE5E;
+    text-align: center;
+    font-size: 2.2em;
+    border-color: #5271FF;
+    background-color: #5271FF;
+    outline: currentColor;
 }
 
-.App-link {
-  color: #61dafb;
+.edit {
+    color: #FEDE5E;
+    background-color: rgb(101, 129, 255);
+    text-align: center;
+    font-size: 0.8em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.edit:hover,
+.edit:focus {
+    color: #FEDE5E;
+    background-color: rgb(128, 151, 255);
 }
 
-.margin {
-  margin: 2%;
+.delete {
+    float: right;
+    color: #FEDE5E;
+    background-color: rgb(101, 129, 255);
+    text-align: center;
+    font-size: 0.8em;
+}
+
+.delete:hover,
+.delete:focus {
+    color: #FEDE5E;
+    background-color: rgb(128, 151, 255);
+}
+
+.rule {
+    border: none;
+    width: 100%;
+    border-top: 2px solid rgb(101, 129, 255);
+}
+
+h4, h5, h6 {
+    font-size: 1em;
+    color: #FEDE5E;
+}
+
+h1 {
+    font-size: 1.3em;
+    color: #FEDE5E;
+}
+
+h2 {
+    font-size: 1.2em;
+    color: #FE66BE;
+}
+
+h3 {
+    font-size: 0.8em;
+    color: #FEDE5E;
+}
+
+.birthday-today {
+    background-color: #FE66BE;
+    color: #5271FF;
+    font-weight: 800;
+    padding-left: 8px;
+}
+
+a {
+    color: #FEDE5E;
+}
+
+a:focus, 
+a:hover {
+    color: #FEDE5E;
+    outline: transparent;
+}
+
+
+/* - - - - DROPDOWN - - - - */
+
+/* css for DROPDOWN */
+.envelope, .gift {
+    float: left;
+    color: #FEDE5E;
+    background-color: rgb(101, 129, 255);
+    text-align: center;
+    font-size: 1.2em;
+}
+
+/* css for DROPDOWN */
+.envelope:hover, .envelope:focus,
+.gift:hover, .gift:focus 
+{
+    color: #FEDE5E;
+    background-color: rgb(128, 151, 255);
+}
+
+/* css for DROPDOWN */
+.info-dropdown {
+    float: left;
+    font-size: 1.1em;
+    color: #FEDE5E;
+    background-color: rgb(101, 129, 255);
+    text-align: center;
+    width: 36px;
+    height: 36px;
+    margin-right: 14px;
+    padding-right: 6px;
+    padding-left: 6px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+.info-dropdown:hover,
+.info-dropdown:focus {
+    color: #FEDE5E;
+    background-color: rgb(128, 151, 255);
+}
+
+/* css for DROPDOWN */
+.interests {
+    background-color: #FEDE5E;
+    color: #5271FF;
+    font-size: 0.9em;
+    padding: 8px;
+    margin: 9px;
+    border: 0px;
+}
+
+
+/* - - - - ADD and EDIT modals - - - - */
+
+/* css for modals */
+.isVisible {
+    display: initial;
+}
+
+/* css for modals */
+.makeItPink {
+    font-size: 1.5em;
+    color: #FE66BE;
+}
+
+/* css for modals */
+.modal-dialog {
+    color: currentColor;
+    position: relative;
+    display: table; /* This is important */
+    overflow-y: auto;
+    overflow-x: auto;
+    width: auto;
+    min-width: 300px;
+}
+
+/* css for modals */
+.modal-content {
+    color: #FE66BE;
+    opacity: 1;
+    background-color: rgb(51, 81, 214);
+}
+
+/* css for ADD modal */
+.done-button {
+    color: rgb(40, 62, 158);
+    background-color: #FE66BE;
+    text-align: center;
+    font-size: 1.0em;
+}
+.done-button:hover,
+.done-button:focus {
+    color: rgb(51, 81, 214);
+    background-color: rgb(255, 138, 206);
 }

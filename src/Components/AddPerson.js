@@ -1,65 +1,197 @@
 import React from "react";
 import "../App.css";
-import moment from "moment";
-import "font-awesome/css/font-awesome.min.css";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
 
 class AddPerson extends React.Component {
   //initial state
   state = {
     name: "",
-    DOB: "",
-    InterestNote: ""
+    dateSelected: "",
+    note: "",
+    gender: "f",
+    showModal: false,
+    birthday: "",
+    number: ""
   };
 
-  updateNoteText = event => {
+  // shows modal
+  handleClick = () => {
     this.setState({
-      newTaskText: event.target.value
+      showModal: true
     });
   };
 
-  handleDateChange = e => {
+  // hides modal
+  handleModalDismiss = () => {
     this.setState({
-      DOB: e.target.value
+      showModal: false
+    });
+  };
+
+  handleClickAdd = () => {
+    this.props.addBirthdayFunc(
+      this.state.name,
+      this.state.birthday,
+      this.state.note,
+      this.state.number
+    );
+    this.setState({
+      showModal: false
+    });
+  };
+
+  updateNoteText = e => {
+    this.setState({
+      note: e.target.value
+    });
+  };
+
+  handleBirthday = e => {
+    this.setState({
+      birthday: e.target.value
+    });
+  };
+
+  handleNewName = e => {
+    this.setState({
+      name: e.target.value
+    });
+  };
+
+  handleNewNumber = e => {
+    this.setState({
+      number: e.target.value
     });
   };
 
   render() {
     return (
-      <div className="row">
-        <div className="col-6">
-          <input
-            type="text"
-            className="form-control navbar addTaskTextArea"
-            aria-describedby="text"
-            placeholder="Add notes here"
-            value={this.state.InterestNote}
-            onChange={this.updateNoteText}
-          ></input>
-        </div>
-        <div className="col-5">
-          <div className="form-group mx-sm-3 mb-2">
-            <input
-              className="form-control navbar"
-              type="date"
-              onChange={this.handleDateChange}
-              value={this.state.DOB}
-            ></input>
-          </div>
-        </div>
-
-        <div className="col-1">
+      <div>
+        <div className="col-2">
           <button
             id="addButton"
-            className="btn btn-warning btn btn-md "
+            className="btn add-button"
             onClick={this.handleClick}
           >
             <i className="fa fa-plus"> </i>
           </button>
         </div>
+
+        {/* ADD modal */}
+        <div className="row">
+          <div
+            className={this.state.showModal ? "modal isVisible" : "modal"}
+            id="modalEditForm"
+            tabIndex="-1"
+            role="dialog"
+            aria-labelledby="myModalLabel"
+            aria-hidden="true"
+          >
+            <div className="modal-dialog" role="document">
+              <div className="modal-content">
+                <div className="modal-header text-center">
+                  <span className="makeItPink">add a birthday...</span>
+                  <button
+                    type="button"
+                    className="close"
+                    data-dismiss="modal"
+                    aria-label="Close"
+                    onClick={this.handleModalDismiss}
+                  >
+                    <span aria-hidden="true" className="makeItPink">
+                      &times;
+                    </span>
+                  </button>
+                </div>
+                <div className="modal-body mx-3">
+                  <div className="md-form">
+                    <label
+                      data-error="wrong"
+                      data-success="right"
+                      htmlFor="form8"
+                    >
+                      Name:
+                    </label>
+                    <textarea
+                      type="text"
+                      id="form8"
+                      className="md-textarea form-control"
+                      rows="1"
+                      placeholder="Name"
+                      onChange={this.handleNewName}
+                    ></textarea>
+                  </div>
+                  <br></br>
+                  <label
+                    data-error="wrong"
+                    data-success="right"
+                    htmlFor="form8"
+                  >
+                    Birthday:
+                  </label>
+                  <div className="form-group mx-sm-3 mb-2 row">
+                    <input
+                      className="form-control col-12"
+                      type="date"
+                      onChange={this.handleBirthday}
+                    ></input>
+                    <label
+                      data-error="wrong"
+                      data-success="right"
+                      htmlFor="form8"
+                    ></label>
+                  </div>
+                  <div className="form-group row">
+                    <label
+                      data-error="wrong"
+                      data-success="right"
+                      htmlFor="form8"
+                      for="example-tel-input"
+                      className="col-12 col-form-label"
+                    >
+                      Phone Number:
+                    </label>
+                    <br></br>
+                    <div className="col-12">
+                      <input
+                        className="form-control"
+                        type="tel"
+                        // value=
+                        id="tel-input"
+                        onChange={this.handleNewNumber}
+                      ></input>
+                    </div>
+                  </div>
+                  <div className="md-form">
+                    <textarea
+                      type="text"
+                      id="form8"
+                      className="md-textarea form-control"
+                      rows="2"
+                      placeholder="Add notes here"
+                      onChange={this.updateNoteText}
+                    ></textarea>
+                    <label
+                      data-error="wrong"
+                      data-success="right"
+                      htmlFor="form8"
+                    ></label>
+                  </div>
+                </div>
+                <div className="modal-footer d-flex justify-content-center">
+                  <button
+                    className="btn btn-unique done-button"
+                    onClick={this.handleClickAdd}
+                  >
+                    Done
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
 }
+
 export default AddPerson;
