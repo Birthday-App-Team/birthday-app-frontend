@@ -1,8 +1,7 @@
-import React from 'react';
-import '../App.css';
+import React from "react";
+import "../App.css";
 
 class AddPerson extends React.Component {
-
   //initial state
   state = {
     name: "",
@@ -10,7 +9,8 @@ class AddPerson extends React.Component {
     note: "",
     gender: "f",
     showModal: false,
-    birthday: ""
+    birthday: "",
+    number: ""
   };
 
   // shows modal
@@ -32,6 +32,7 @@ class AddPerson extends React.Component {
       this.state.name,
       this.state.birthday,
       this.state.note,
+      this.state.number
     );
     this.setState({
       showModal: false
@@ -53,6 +54,12 @@ class AddPerson extends React.Component {
   handleNewName = e => {
     this.setState({
       name: e.target.value
+    });
+  };
+
+  handleNewNumber = e => {
+    this.setState({
+      number: e.target.value
     });
   };
 
@@ -82,9 +89,7 @@ class AddPerson extends React.Component {
             <div className="modal-dialog" role="document">
               <div className="modal-content">
                 <div className="modal-header text-center">
-                  <span className="makeItPink">
-                    add a birthday...
-                  </span>
+                  <span className="makeItPink">add a birthday...</span>
                   <button
                     type="button"
                     className="close"
@@ -92,7 +97,9 @@ class AddPerson extends React.Component {
                     aria-label="Close"
                     onClick={this.handleModalDismiss}
                   >
-                    <span aria-hidden="true" className="makeItPink">&times;</span>
+                    <span aria-hidden="true" className="makeItPink">
+                      &times;
+                    </span>
                   </button>
                 </div>
                 <div className="modal-body mx-3">
@@ -121,9 +128,9 @@ class AddPerson extends React.Component {
                   >
                     Birthday:
                   </label>
-                  <div className="form-group mx-sm-3 mb-2">
+                  <div className="form-group mx-sm-3 mb-2 row">
                     <input
-                      className="form-control"
+                      className="form-control col-12"
                       type="date"
                       onChange={this.handleBirthday}
                     ></input>
@@ -133,7 +140,27 @@ class AddPerson extends React.Component {
                       htmlFor="form8"
                     ></label>
                   </div>
-
+                  <div className="form-group row">
+                    <label
+                      data-error="wrong"
+                      data-success="right"
+                      htmlFor="form8"
+                      for="example-tel-input"
+                      className="col-12 col-form-label"
+                    >
+                      Phone Number:
+                    </label>
+                    <br></br>
+                    <div className="col-12">
+                      <input
+                        className="form-control"
+                        type="tel"
+                        // value=
+                        id="tel-input"
+                        onChange={this.handleNewNumber}
+                      ></input>
+                    </div>
+                  </div>
                   <div className="md-form">
                     <textarea
                       type="text"
@@ -162,11 +189,9 @@ class AddPerson extends React.Component {
             </div>
           </div>
         </div>
-
       </div>
-    )
+    );
   }
-
 }
 
 export default AddPerson;
