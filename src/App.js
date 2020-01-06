@@ -67,7 +67,8 @@ class App extends React.Component {
   // DELETE
   deleteBirthday = id => {
     axios.delete(
-        "https://gggyf4jhi4.execute-api.eu-west-1.amazonaws.com/dev/birthdays/" + id      )
+        "https://gggyf4jhi4.execute-api.eu-west-1.amazonaws.com/dev/birthdays/" + id
+      )
       .then(response => {
         console.log("this is response:", response);
         const birthdaysNotDel = this.state.birthdays.filter(birthday => {
@@ -80,7 +81,6 @@ class App extends React.Component {
       })
       .catch(err => console.log("Error deleting birthday", err));
   };
-
 
   // POST
   addBirthday = (name, birthday, note) => {
@@ -104,6 +104,7 @@ class App extends React.Component {
       .catch(err => {
         console.log("Error creating birthday", err);
       });
+  };
 
   // PUT
   editBirthday = (id, name, DOB, newNote) => {
@@ -136,37 +137,11 @@ class App extends React.Component {
   };
 
 
-  onDayClick = (e, day, m, y) => {
-    alert(day + m + y);
-    console.log(day + this.state.birthdays);
-  };
-
-  calendarDisplay = (date, view) => {
-    console.log("birthdays = " + this.state.birthdays);
-    const birthdaysOnDay = this.state.birthdays.filter(birthday => {
-      console.log("Name is " + birthday.name);
-      return date.getMonth() === birthday.date_of_birth.getMonth();
-    });
-    console.log("bdays " + birthdaysOnDay);
-    if (view === "month" && date.getDay() === 0)
-      console.log(birthdaysOnDay.name);
-    else {
-      return <p>hi</p>;
-    }
-
-  };
   render() {
     return (
-
       <div className="App container">
-        {/* <Calendar
-          tileContent={this.calendarDisplay}
-          onDaySelected={this.onDayClick}
-        /> */}
-        {/* <CalendarOld
-          className="calenderStyle calendar-container"
-          onDayClick={(e, day, m, y) => this.onDayClick(e, day, m, y)}
-        /> */}
+
+
         <div className="row">
           <AddPerson addBirthdayFunc={this.addBirthday}/>
           <div className="col-10">
@@ -191,12 +166,10 @@ class App extends React.Component {
                   isBirthdayToday={birthday.isBirthdayToday}
                   deleteBirthdayFunc={this.deleteBirthday}
                   editBirthdayFunc={this.editBirthday}
-                  deleteBirthdayFunc={this.deleteBirthday}
                 />
               );
             })}
             <hr className="rule" />
-
           </div>
         </div>
       </div>
