@@ -56,8 +56,16 @@ class AddPerson extends React.Component {
     });
   };
 
+  handleNewName = e => {
+    this.setState({
+      name: e.target.value
+    });
+    console.log("WOOP", this.state.name);
+  };
+
   render() {
     return (
+
       <div>
         <div className="col-2">
           <button
@@ -69,10 +77,12 @@ class AddPerson extends React.Component {
           </button>
         </div>
 
+
         {/* ADD modal */}
         <div className="row">
           <div
             className={this.state.showModal ? "modal isVisible" : "modal"}
+
             id="modalEditForm"
             tabIndex="-1"
             role="dialog"
@@ -82,6 +92,7 @@ class AddPerson extends React.Component {
             <div className="modal-dialog" role="document">
               <div className="modal-content">
                 <div className="modal-header text-center">
+
                   <span className="makeItPink">
                     add a birthday...
                   </span>
@@ -162,7 +173,6 @@ class AddPerson extends React.Component {
             </div>
           </div>
         </div>
-
       </div>
     )
   }
