@@ -1,21 +1,22 @@
-import React from 'react';
-import BirthdayList from './Components/BirthdayList';
-import AddPerson from './Components/AddPerson';
-import logo from './logo.png';
-import './App.css';
+import React from "react";
+import BirthdayList from "./Components/BirthdayList";
+import AddPerson from "./Components/AddPerson";
+import logo from "./logo.png";
+import "./App.css";
 import axios from "axios";
 import moment from "moment";
+import CalendarComponent from "./Components/CalendarComponent";
 
 class App extends React.Component {
-
   state = {
     birthdays: []
   };
 
   componentDidMount() {
-    axios.get(
-      "https://gggyf4jhi4.execute-api.eu-west-1.amazonaws.com/dev/birthdays"
-    )
+    axios
+      .get(
+        "https://gggyf4jhi4.execute-api.eu-west-1.amazonaws.com/dev/birthdays"
+      )
       .then(response => {
         const birthdaysFromDB = response.data;
         this.setState({
@@ -38,7 +39,7 @@ class App extends React.Component {
       return birthday;
     });
     return nextBirthdays;
-  }
+  };
 
   // checks for any birthdays that are today and adds "isBirthdayToday = true/false" to the state as new property
   identifyBirthdaysToday = birthdays => {
@@ -50,24 +51,26 @@ class App extends React.Component {
         birthday.isBirthdayToday = true;
         birthday.nextBirthday = birthday.nextBirthday.subtract(1, "years");
         birthday.nextAge = birthday.nextAge - 1;
-      };
+      }
       return birthday;
     });
     return nextBirthdays;
-  }
+  };
 
   // sorts birthdays in order of next up birthday (sorting "nextBirthday" - a moment object)
   sortBirthdays = birthdays => {
     birthdays.sort((a, b) => {
-      return a.nextBirthday.isAfter(b.nextBirthday) ? 1 : -1
-    })
+      return a.nextBirthday.isAfter(b.nextBirthday) ? 1 : -1;
+    });
     return birthdays;
-  }
+  };
 
   // DELETE
   deleteBirthday = id => {
-    axios.delete(
-        "https://gggyf4jhi4.execute-api.eu-west-1.amazonaws.com/dev/birthdays/" + id
+    axios
+      .delete(
+        "https://gggyf4jhi4.execute-api.eu-west-1.amazonaws.com/dev/birthdays/" +
+          id
       )
       .then(response => {
         console.log("this is response:", response);
@@ -83,14 +86,16 @@ class App extends React.Component {
   };
 
   // POST
-  addBirthday = (name, birthday, note) => {
+  addBirthday = (name, birthday, note, number) => {
     const birthdaysCopy = this.state.birthdays.slice();
     const newBirthday = {
       name: name,
       date_of_birth: birthday,
-      interests: note
+      interests: note,
+      phone_number: number
     };
-    axios.post(
+    axios
+      .post(
         "https://gggyf4jhi4.execute-api.eu-west-1.amazonaws.com/dev/birthdays",
         newBirthday
       )
@@ -136,29 +141,46 @@ class App extends React.Component {
       .catch(err => console.log("Error editing task", err));
   };
 
+  consoleLogThis = () => {
+    console.log(this.state.birthdays);
+  };
 
   render() {
     return (
       <div className="App container">
-
-
         <div className="row">
-          <AddPerson addBirthdayFunc={this.addBirthday}/>
+          <AddPerson addBirthdayFunc={this.addBirthday} />
           <div className="col-10">
-            <img src={logo} alt="birthdaze logo" className="logo" width="233" height="87" />
+            <img
+              src={logo}
+              alt="birthdaze logo"
+              className="logo"
+              width="233"
+              height="87"
+            />
           </div>
         </div>
-
+        <div>
+          <CalendarComponent
+            birthdays={this.state.birthdays}
+            consoleLogFunc={this.consoleLogThis}
+          />
+        </div>
 
         <div className="row">
           <div className="col-12">
             <hr className="rule" />
-            {this.sortBirthdays(this.identifyBirthdaysToday(this.calcNextBirthdayAndAge(this.state.birthdays))).map(birthday => {
+            {this.sortBirthdays(
+              this.identifyBirthdaysToday(
+                this.calcNextBirthdayAndAge(this.state.birthdays)
+              )
+            ).map(birthday => {
               return (
                 <BirthdayList
                   name={birthday.name}
                   dateOfBirth={birthday.date_of_birth}
                   text={birthday.interests}
+                  number={birthday.phone_number}
                   key={birthday.birthdayID}
                   id={birthday.birthdayID}
                   nextBirthday={birthday.nextBirthday}
@@ -173,9 +195,8 @@ class App extends React.Component {
           </div>
         </div>
       </div>
-    )
+    );
   }
 }
-
 
 export default App;
