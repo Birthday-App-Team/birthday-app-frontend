@@ -1,8 +1,7 @@
-import React from 'react';
-import '../App.css';
+import React from "react";
+import "../App.css";
 
 class AddPerson extends React.Component {
-
   //initial state
   state = {
     name: "",
@@ -10,7 +9,8 @@ class AddPerson extends React.Component {
     note: "",
     gender: "f",
     showModal: false,
-    birthday: ""
+    birthday: "",
+    number: ""
   };
 
   // shows modal
@@ -27,32 +27,55 @@ class AddPerson extends React.Component {
     });
   };
 
+  //add button on modal function
   handleClickAdd = () => {
-    this.props.addBirthdayFunc(
-      this.state.name,
-      this.state.birthday,
-      this.state.note,
-    );
-    this.setState({
-      showModal: false
-    });
+    if (
+      this.state.name === "" &&
+      this.state.birthday === "" &&
+      this.state.note === "" &&
+      this.state.number === ""
+    ) {
+      this.setState({
+        showModal: false
+      });
+    } else {
+      this.props.addBirthdayFunc(
+        this.state.name,
+        this.state.birthday,
+        this.state.note,
+        this.state.number
+      );
+      this.setState({
+        showModal: false
+      });
+    }
   };
 
+  //note input
   updateNoteText = e => {
     this.setState({
       note: e.target.value
     });
   };
 
+  //DOB input
   handleBirthday = e => {
     this.setState({
       birthday: e.target.value
     });
   };
 
+  //name input
   handleNewName = e => {
     this.setState({
       name: e.target.value
+    });
+  };
+
+  //number input
+  handleNewNumber = e => {
+    this.setState({
+      number: e.target.value
     });
   };
 
@@ -82,9 +105,7 @@ class AddPerson extends React.Component {
             <div className="modal-dialog" role="document">
               <div className="modal-content">
                 <div className="modal-header text-center">
-                  <span className="makeItPink">
-                    add a birthday...
-                  </span>
+                  <span className="makeItPink">add a birthday...</span>
                   <button
                     type="button"
                     className="close"
@@ -92,7 +113,9 @@ class AddPerson extends React.Component {
                     aria-label="Close"
                     onClick={this.handleModalDismiss}
                   >
-                    <span aria-hidden="true" className="makeItPink">&times;</span>
+                    <span aria-hidden="true" className="makeItPink">
+                      &times;
+                    </span>
                   </button>
                 </div>
                 <div className="modal-body mx-3">
@@ -121,20 +144,42 @@ class AddPerson extends React.Component {
                   >
                     Birthday:
                   </label>
-                  <div className="form-group mx-sm-3 mb-2">
+                  <div className="form-group mx-sm-3 mb-2 row">
                     <input
-                      className="form-control"
+                      className="form-control col-12"
                       type="date"
                       onChange={this.handleBirthday}
                     ></input>
+                  </div>
+                  <div className="form-group row">
+                    <label
+                      data-error="wrong"
+                      data-success="right"
+                      htmlFor="tel-input"
+                      for="example-tel-input"
+                      className="col-12 col-form-label"
+                      placeholder="+44"
+                    >
+                      Phone Number:
+                    </label>
+                    <br></br>
+                    <div className="col-12">
+                      <input
+                        className="md-textarea form-control"
+                        type="tel"
+                        id="tel-input"
+                        onChange={this.handleNewNumber}
+                      ></input>
+                    </div>
+                  </div>
+                  <div className="md-form">
                     <label
                       data-error="wrong"
                       data-success="right"
                       htmlFor="form8"
-                    ></label>
-                  </div>
-
-                  <div className="md-form">
+                    >
+                      Interests:
+                    </label>
                     <textarea
                       type="text"
                       id="form8"
@@ -143,11 +188,6 @@ class AddPerson extends React.Component {
                       placeholder="Add notes here"
                       onChange={this.updateNoteText}
                     ></textarea>
-                    <label
-                      data-error="wrong"
-                      data-success="right"
-                      htmlFor="form8"
-                    ></label>
                   </div>
                 </div>
                 <div className="modal-footer d-flex justify-content-center">
@@ -162,11 +202,9 @@ class AddPerson extends React.Component {
             </div>
           </div>
         </div>
-
       </div>
-    )
+    );
   }
-
 }
 
 export default AddPerson;
