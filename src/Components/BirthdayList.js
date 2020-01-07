@@ -197,7 +197,7 @@ class BirthdayList extends React.Component {
             </button>
             <h1>{this.props.name}</h1>
           </div>
-            <div className="col-4">
+            <div className="col-5">
               {this.formatDateDisplay(this.props)}
             </div>
             
@@ -217,7 +217,7 @@ class BirthdayList extends React.Component {
           <div className="container">
             <div className="row">
               <div
-                className="col-12 col-sm-1"
+                className="col-12 col-sm-6"
                 style={{ display: this.state.showDropdown ? "inline" : "none" }}
               >
                 <span className="card interests">INTERESTS: {this.props.text}</span>
