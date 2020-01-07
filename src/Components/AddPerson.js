@@ -29,15 +29,26 @@ class AddPerson extends React.Component {
 
   //add button on modal function
   handleClickAdd = () => {
-    this.props.addBirthdayFunc(
-      this.state.name,
-      this.state.birthday,
-      this.state.note,
-      this.state.number
-    );
-    this.setState({
-      showModal: false
-    });
+    if (
+      this.state.name === "" &&
+      this.state.birthday === "" &&
+      this.state.note === "" &&
+      this.state.number === ""
+    ) {
+      this.setState({
+        showModal: false
+      });
+    } else {
+      this.props.addBirthdayFunc(
+        this.state.name,
+        this.state.birthday,
+        this.state.note,
+        this.state.number
+      );
+      this.setState({
+        showModal: false
+      });
+    }
   };
 
   //note input
@@ -139,17 +150,12 @@ class AddPerson extends React.Component {
                       type="date"
                       onChange={this.handleBirthday}
                     ></input>
-                    <label
-                      data-error="wrong"
-                      data-success="right"
-                      htmlFor="form8"
-                    ></label>
                   </div>
                   <div className="form-group row">
                     <label
                       data-error="wrong"
                       data-success="right"
-                      htmlFor="form8"
+                      htmlFor="tel-input"
                       for="example-tel-input"
                       className="col-12 col-form-label"
                       placeholder="+44"
@@ -159,7 +165,7 @@ class AddPerson extends React.Component {
                     <br></br>
                     <div className="col-12">
                       <input
-                        className="form-control"
+                        className="md-textarea form-control"
                         type="tel"
                         id="tel-input"
                         onChange={this.handleNewNumber}
@@ -167,6 +173,13 @@ class AddPerson extends React.Component {
                     </div>
                   </div>
                   <div className="md-form">
+                    <label
+                      data-error="wrong"
+                      data-success="right"
+                      htmlFor="form8"
+                    >
+                      Interests:
+                    </label>
                     <textarea
                       type="text"
                       id="form8"
@@ -175,11 +188,6 @@ class AddPerson extends React.Component {
                       placeholder="Add notes here"
                       onChange={this.updateNoteText}
                     ></textarea>
-                    <label
-                      data-error="wrong"
-                      data-success="right"
-                      htmlFor="form8"
-                    ></label>
                   </div>
                 </div>
                 <div className="modal-footer d-flex justify-content-center">
