@@ -22,8 +22,10 @@ body {
     padding: 20px; 
 }
 
+
 .logo {
     float: center;
+
 }
 
 .add-button {
@@ -51,6 +53,7 @@ body {
     text-align: center;
     font-size: 0.8em;
     font-weight: bolder;
+    border-spacing: 50px;
 }
 
 .edit:hover,
@@ -62,13 +65,14 @@ body {
 }
 
 .delete {
-    float: left;
+
     color: #FEDE5E;
     background-color: rgb(101, 129, 255);
     text-align: center;
     font-size: 0.8em;
     border-width: 2px;
     border-color:  rgb(59, 93, 243);
+
 }
 
 .delete:hover,
@@ -76,6 +80,7 @@ body {
     color: #FEDE5E;
     background-color: rgb(128, 151, 255);
 }
+
 
 .rule {
     border: none;
@@ -215,6 +220,8 @@ a:hover {
     background-color: #FE66BE;
     text-align: center;
     font-size: 1.0em;
+    margin-left: 100px;
+    
 }
 .done-button:hover,
 .done-button:focus {
@@ -230,13 +237,13 @@ a:hover {
             object-fit: fill;
             color: #FEDE5E;
           }
-    }
     .App {
-         width: 90%;
-         box-align: auto;
-
-  }
+            width: 90%;
+            box-align: auto;
+         }
+        }
     
+
   
     @media only screen and (min-width: 401px) and (max-width: 1600px) {
     body {

@@ -188,7 +188,7 @@ class BirthdayList extends React.Component {
         </div>
 
           {/* this is each BIRTHDAY */}
-          <div className="col-5
+          <div className="col-4
           ">
             <button className="btn info-dropdown"
               onClick={this.handleClickDropdown}
@@ -201,23 +201,23 @@ class BirthdayList extends React.Component {
               {this.formatDateDisplay(this.props)}
             </div>
             
-          <div className="col-12 col-sm-2">
+          <div className="col-12 col-md-3">
             <button className="btn edit"
               onClick={this.handleClickEdit}
-            > <i className="fa fa-pencil-square"/> </button>
-          
+              > <i className="fa fa-pencil-square"/> </button>&nbsp;&nbsp;&nbsp;            
             <button className="btn delete"
               onClick={this.handleClickDelete}
-            >
+              >
               <i className="fa fa-trash" />
             </button>
+
           </div>
 
           {/* this is the BIRTHDAY dropdown */}
           <div className="container">
             <div className="row">
               <div
-                className="col-12 col-sm-6"
+                className="col-12 col-sm-5"
                 style={{ display: this.state.showDropdown ? "inline" : "none" }}
               >
                 <span className="card interests">INTERESTS: {this.props.text}</span>

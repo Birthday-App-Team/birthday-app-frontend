@@ -164,8 +164,8 @@ class App extends React.Component {
                   nextBirthday={birthday.nextBirthday}
                   nextAge={birthday.nextAge}
                   isBirthdayToday={birthday.isBirthdayToday}
-                  deleteBirthdayFunc={this.deleteBirthday}
                   editBirthdayFunc={this.editBirthday}
+                  deleteBirthdayFunc={this.deleteBirthday}
                 />
               );
             })}
