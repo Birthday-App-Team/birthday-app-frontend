@@ -135,11 +135,12 @@ class App extends React.Component {
   };
 
   // PUT
-  editBirthday = (id, name, DOB, newNote) => {
+  editBirthday = (id, name, DOB, newNote, number) => {
     const editedBirthday = {
       name: name,
       date_of_birth: DOB,
-      interests: newNote
+      interests: newNote,
+      phone_number: number
     };
     axios
       .put(
@@ -154,6 +155,7 @@ class App extends React.Component {
             birthday.interests = newNote;
             birthday.name = name;
             birthday.date_of_birth = DOB;
+            birthday.phone_number = number;
           }
           return birthday;
         });
@@ -164,21 +166,26 @@ class App extends React.Component {
       .catch(err => console.log("Error editing task", err));
   };
 
-
   render() {
     return (
       <div className="App ">
         <div className="row">
           <AddPerson addBirthdayFunc={this.addBirthday} />
           <div className="col-10">
-            <img src={logo} alt="birthdaze logo" className="logo" width="250" height="90" />
+            <img
+              src={logo}
+              alt="birthdaze logo"
+              className="logo"
+              width="250"
+              height="90"
+            />
           </div>
         </div>
         <div>
           <Search startSearchFunc={this.search} />
         </div>
         <div className="row">
-          <div className="col-12">
+          <div className="col-12 col-md-6">
             <hr className="rule" />
             {this.searchBirthdays(
               this.sortBirthdays(

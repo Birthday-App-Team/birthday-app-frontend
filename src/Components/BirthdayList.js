@@ -25,9 +25,7 @@ class BirthdayList extends React.Component {
     } else {
       return (
         <div>
-          <h2>
-            {props.nextAge} {this.props.nextBirthday.fromNow()}
-          </h2>
+          <h2>{this.props.nextBirthday.fromNow()}</h2>
           <h3>
             turns <span className="years">{props.nextAge}</span> on{" "}
             {moment(props.dateOfBirth).format("MMM Do")}
@@ -101,8 +99,8 @@ class BirthdayList extends React.Component {
 
   // DONE BUTTON:
   handleUpdate = () => {
-    console.log(this.state.updatedDOB);
-    if (this.state.updatedDOB === "0000-00-00") {
+    console.log(this.state);
+    if (this.state.updatedDOB === "") {
       this.setState({
         updatedDOB: "-"
       });
@@ -269,7 +267,7 @@ class BirthdayList extends React.Component {
           </div>
           <div className="col-5">{this.formatDateDisplay(this.props)}</div>
 
-          <div className="col-12 col-sm-2">
+          <div className="col-12 col-md-">
             <button className="btn edit" onClick={this.handleClickEdit}>
               {" "}
               <i className="fa fa-pencil-square" />{" "}
