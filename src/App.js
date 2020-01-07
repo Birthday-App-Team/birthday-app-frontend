@@ -5,13 +5,15 @@ import logo from "./logo.png";
 import "./App.css";
 import axios from "axios";
 import moment from "moment";
-import CalendarComponent from "./Components/CalendarComponent";
+import Search from "./Components/Search";
 
 class App extends React.Component {
   state = {
-    birthdays: []
+    birthdays: [],
+    search: ""
   };
 
+  //GET
   componentDidMount() {
     axios
       .get(
@@ -63,6 +65,27 @@ class App extends React.Component {
       return a.nextBirthday.isAfter(b.nextBirthday) ? 1 : -1;
     });
     return birthdays;
+  };
+
+  //saves search value as state
+  search = e => {
+    this.setState({
+      search: e
+    });
+  };
+
+  //filters birthday list
+  searchBirthdays = birthdays => {
+    if (this.state.search === "") {
+      return birthdays;
+    } else {
+      let filteredBirthdays = birthdays.filter(birthday => {
+        return birthday.name.toLowerCase().indexOf(this.state.search) !== -1;
+      });
+
+      console.log(filteredBirthdays);
+      return filteredBirthdays;
+    }
   };
 
   // DELETE
@@ -141,9 +164,6 @@ class App extends React.Component {
       .catch(err => console.log("Error editing task", err));
   };
 
-  consoleLogThis = () => {
-    console.log(this.state.birthdays);
-  };
 
   render() {
     return (
@@ -161,18 +181,16 @@ class App extends React.Component {
           </div>
         </div>
         <div>
-          <CalendarComponent
-            birthdays={this.state.birthdays}
-            consoleLogFunc={this.consoleLogThis}
-          />
+          <Search startSearchFunc={this.search} />
         </div>
-
         <div className="row">
           <div className="col-12">
             <hr className="rule" />
-            {this.sortBirthdays(
-              this.identifyBirthdaysToday(
-                this.calcNextBirthdayAndAge(this.state.birthdays)
+            {this.searchBirthdays(
+              this.sortBirthdays(
+                this.identifyBirthdaysToday(
+                  this.calcNextBirthdayAndAge(this.state.birthdays)
+                )
               )
             ).map(birthday => {
               return (

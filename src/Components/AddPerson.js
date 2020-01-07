@@ -27,6 +27,7 @@ class AddPerson extends React.Component {
     });
   };
 
+  //add button on modal function
   handleClickAdd = () => {
     this.props.addBirthdayFunc(
       this.state.name,
@@ -39,24 +40,28 @@ class AddPerson extends React.Component {
     });
   };
 
+  //note input
   updateNoteText = e => {
     this.setState({
       note: e.target.value
     });
   };
 
+  //DOB input
   handleBirthday = e => {
     this.setState({
       birthday: e.target.value
     });
   };
 
+  //name input
   handleNewName = e => {
     this.setState({
       name: e.target.value
     });
   };
 
+  //number input
   handleNewNumber = e => {
     this.setState({
       number: e.target.value
@@ -147,6 +152,7 @@ class AddPerson extends React.Component {
                       htmlFor="form8"
                       for="example-tel-input"
                       className="col-12 col-form-label"
+                      placeholder="+44"
                     >
                       Phone Number:
                     </label>
@@ -155,7 +161,6 @@ class AddPerson extends React.Component {
                       <input
                         className="form-control"
                         type="tel"
-                        // value=
                         id="tel-input"
                         onChange={this.handleNewNumber}
                       ></input>

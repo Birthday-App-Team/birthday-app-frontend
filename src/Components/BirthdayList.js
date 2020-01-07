@@ -184,7 +184,7 @@ class BirthdayList extends React.Component {
                   >
                     Edit birthday:
                   </label>
-                  <div className="form-group mx-sm-3 mb-2">
+                  <div className="md-form">
                     {/* EDIT DATE */}
                     <input
                       className="form-control"
@@ -192,25 +192,23 @@ class BirthdayList extends React.Component {
                       value={this.state.updatedDOB}
                       onChange={this.updateBirthday}
                     ></input>
+                  </div>
+                  {/* EDIT NUMBER */}
+
+                  <div className="md-form">
                     <label
                       data-error="wrong"
                       data-success="right"
                       htmlFor="form8"
-                    ></label>
-                  </div>
-                  {/* EDIT NUMBER */}
-                  <div className="form-group mx-sm-3 mb-2">
+                    >
+                      Edit Number:
+                    </label>
                     <input
                       className="form-control"
                       type="tel"
                       value={this.state.updatedNumber}
                       onChange={this.updateNumber}
                     ></input>
-                    <label
-                      data-error="wrong"
-                      data-success="right"
-                      htmlFor="form8"
-                    ></label>
                   </div>
 
                   <div className="md-form">
@@ -277,7 +275,9 @@ class BirthdayList extends React.Component {
                 <span className="card interests">
                   INTERESTS: {this.props.text}
                 </span>
-
+                <span className="card interests">
+                  PHONE NUMBER: {this.props.number}
+                </span>
                 <button type="button" className="btn gift ml-2">
                   <a href={this.giftByAge()} target="blank">
                     <i className="fa fa-gift"></i>
