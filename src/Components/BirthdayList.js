@@ -244,23 +244,27 @@ class BirthdayList extends React.Component {
           </div>
 
           {/* this is each BIRTHDAY */}
-          <div className="col-5">
-            <button
-              className="btn info-dropdown"
+          <div className="col-5
+          ">
+            <button className="btn info-dropdown"
               onClick={this.handleClickDropdown}
             >
               <i className="fa fa-caret-down" />
             </button>
             <h1>{this.props.name}</h1>
           </div>
-          <div className="col-4">{this.formatDateDisplay(this.props)}</div>
-          <div className="col-2">
-            <button className="btn edit" onClick={this.handleClickEdit}>
-              EDIT
-            </button>
-          </div>
-          <div className="col-1">
-            <button className="btn delete" onClick={this.handleClickDelete}>
+            <div className="col-5">
+              {this.formatDateDisplay(this.props)}
+            </div>
+            
+          <div className="col-12 col-sm-2">
+            <button className="btn edit"
+              onClick={this.handleClickEdit}
+            > <i className="fa fa-pencil-square"/> </button>
+          
+            <button className="btn delete"
+              onClick={this.handleClickDelete}
+            >
               <i className="fa fa-trash" />
             </button>
           </div>
@@ -269,7 +273,7 @@ class BirthdayList extends React.Component {
           <div className="container">
             <div className="row">
               <div
-                className="col-12"
+                className="col-12 col-sm-6"
                 style={{ display: this.state.showDropdown ? "inline" : "none" }}
               >
                 <span className="card interests">

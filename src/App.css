@@ -6,56 +6,25 @@
  */
 
 body {
-  background-color: #fede5e;
-  font-family: Arial, Helvetica, sans-serif;
-}
 
-@media only screen and (max-width: 1600px) {
-  body {
-    background-image: url("./media/cupcakes2.jpg");
-    background-size: cover;
-    object-fit: fill;
-    color: #fede5e;
-  }
-}
-@media only screen and (max-width: 1400px) {
-  body {
-    background-image: url("./media/blue-balloons.jpg");
-    background-size: cover;
-    object-fit: fill;
-    color: #fede5e;
-  }
-}
-@media only screen and (max-width: 800px) {
-  body {
-    background-image: url("./media/1-Birthday-cupcakes1.jpg");
-    background-size: cover;
-    object-fit: fill;
-    color: #fede5e;
-  }
-}
-@media only screen and (max-width: 400px) {
-  body {
-    background-image: url("./media/birthday-party.jpg");
-    background-size: cover;
-    color: #fede5e;
-  }
+    background-color: #FEDE5E;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: bolder;
 }
 
 .App {
-  text-align: center;
-  background-color: #5271ff;
-  opacity: 0.94;
-  min-height: 800px;
-  width: 600px;
-  margin: 30px auto;
-  text-align: left;
-  border-radius: 18px;
-  padding: 20px;
+    text-align: center;
+    background-color: #5271FF;
+    opacity: 0.94; 
+    min-height: 800px;
+    margin: 30px auto;
+    text-align: left;
+    border-radius: 18px;
+    padding: 20px; 
 }
 
 .logo {
-  float: right;
+    float: center;
 }
 
 .add-button {
@@ -67,33 +36,42 @@ body {
 
 .add-button:hover,
 .add-button:focus {
-  color: #fede5e;
-  text-align: center;
-  font-size: 2.2em;
-  border-color: #5271ff;
-  background-color: #5271ff;
-  outline: currentColor;
+
+    color: #FEDE5E;
+    text-align: center;
+    font-size: 2.2em;
+    border-color: #5271FF;
+    background-color: #5271FF;
+    outline: currentColor;
+    border-width: 2px;
+    border-color:  rgb(59, 93, 243);
 }
 
 .edit {
-  color: #fede5e;
-  background-color: rgb(101, 129, 255);
-  text-align: center;
-  font-size: 0.8em;
+    color: #FEDE5E;
+    background-color: rgb(101, 129, 255);
+    text-align: center;
+    font-size: 0.8em;
+    font-weight: bolder;
 }
 
 .edit:hover,
 .edit:focus {
-  color: #fede5e;
-  background-color: rgb(128, 151, 255);
+    color: #FEDE5E;
+    background-color: rgb(128, 151, 255);
+    border-width: 2px;
+    border-color:  rgb(59, 93, 243);
 }
 
 .delete {
-  float: right;
-  color: #fede5e;
-  background-color: rgb(101, 129, 255);
-  text-align: center;
-  font-size: 0.8em;
+    float: left;
+    color: #FEDE5E;
+    background-color: rgb(101, 129, 255);
+    text-align: center;
+    font-size: 0.8em;
+    border-width: 2px;
+    border-color:  rgb(59, 93, 243);
+
 }
 
 .delete:hover,
@@ -121,20 +99,27 @@ h1 {
 }
 
 h2 {
-  font-size: 1.2em;
-  color: #fe66be;
+    font: bolder;
+    font-size: 1.2em;
+    color: #FE66BE;
+
 }
 
+
 h3 {
-  font-size: 0.8em;
-  color: #fede5e;
+    font: bold;
+    font-size: 0.8em;
+    color: #FEDE5E;
 }
 
 .birthday-today {
-  background-color: #fe66be;
-  color: #5271ff;
-  font-weight: 800;
-  padding-left: 8px;
+    background-color: rgb(250, 125, 198);
+    color: #5271FF;
+    font-weight: 800;
+    font: whitesmoke;
+    padding-left: 8px;
+    border-radius: 10px;
+    
 }
 
 a {
@@ -243,6 +228,38 @@ a:hover {
 }
 .done-button:hover,
 .done-button:focus {
-  color: rgb(51, 81, 214);
-  background-color: rgb(255, 138, 206);
+    color: rgb(51, 81, 214);
+    background-color: rgb(255, 138, 206);
 }
+
+
+    @media only screen and (max-width: 400px) {
+    body {
+            background-image: url("./media/birthday-party.jpg");
+            background-size: auto;
+            object-fit: fill;
+            color: #FEDE5E;
+          }
+    }
+    .App {
+         width: 90%;
+         box-align: auto;
+
+  }
+    
+  
+    @media only screen and (min-width: 401px) and (max-width: 1600px) {
+    body {
+            background-image: url("./media/graph-birthday.jpg");
+            background-size: cover;
+            object-fit: fill;
+            color: #FEDE5E;
+          }
+    }
+  
+    @media only screen and (min-width: 961px) {
+    body {
+      background-color: #FEDE5E;
+  }
+}
+
