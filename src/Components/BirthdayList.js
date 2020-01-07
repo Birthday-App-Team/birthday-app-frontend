@@ -16,14 +16,18 @@ class BirthdayList extends React.Component {
     if (this.props.isBirthdayToday) {
       return (
         <div>
-          <h2 className="birthday-today">turns {props.nextAge} today!</h2>
+          <h2 className="birthday-today">
+            turns {props.nextAge} today! <i className="fa fa-birthday-cake" />
+          </h2>
           <h3>{moment(props.dateOfBirth).format("MMM Do")}</h3>
         </div>
       );
     } else {
       return (
         <div>
-          <h2>{this.props.nextBirthday.fromNow()}</h2>
+          <h2>
+            {props.nextAge} {this.props.nextBirthday.fromNow()}
+          </h2>
           <h3>
             turns <span className="years">{props.nextAge}</span> on{" "}
             {moment(props.dateOfBirth).format("MMM Do")}
@@ -97,13 +101,20 @@ class BirthdayList extends React.Component {
 
   // DONE BUTTON:
   handleUpdate = () => {
-    this.props.editBirthdayFunc(
-      this.props.id,
-      this.state.updatedName,
-      this.state.updatedDOB,
-      this.state.updatedInterests,
-      this.state.updatedNumber
-    );
+    console.log(this.state.updatedDOB);
+    if (this.state.updatedDOB === "0000-00-00") {
+      this.setState({
+        updatedDOB: "-"
+      });
+    } else {
+      this.props.editBirthdayFunc(
+        this.props.id,
+        this.state.updatedName,
+        this.state.updatedDOB,
+        this.state.updatedInterests,
+        this.state.updatedNumber
+      );
+    }
     this.setState({
       showModal: false
     });
@@ -244,27 +255,27 @@ class BirthdayList extends React.Component {
           </div>
 
           {/* this is each BIRTHDAY */}
-          <div className="col-5
-          ">
-            <button className="btn info-dropdown"
+          <div
+            className="col-5
+          "
+          >
+            <button
+              className="btn info-dropdown"
               onClick={this.handleClickDropdown}
             >
               <i className="fa fa-caret-down" />
             </button>
             <h1>{this.props.name}</h1>
           </div>
-            <div className="col-5">
-              {this.formatDateDisplay(this.props)}
-            </div>
-            
+          <div className="col-5">{this.formatDateDisplay(this.props)}</div>
+
           <div className="col-12 col-sm-2">
-            <button className="btn edit"
-              onClick={this.handleClickEdit}
-            > <i className="fa fa-pencil-square"/> </button>
-          
-            <button className="btn edit"
-              onClick={this.handleClickDelete}
-            >
+            <button className="btn edit" onClick={this.handleClickEdit}>
+              {" "}
+              <i className="fa fa-pencil-square" />{" "}
+            </button>
+
+            <button className="btn edit" onClick={this.handleClickDelete}>
               <i className="fa fa-trash" />
             </button>
           </div>
