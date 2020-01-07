@@ -262,7 +262,7 @@ class BirthdayList extends React.Component {
               onClick={this.handleClickEdit}
             > <i className="fa fa-pencil-square"/> </button>
           
-            <button className="btn delete"
+            <button className="btn edit"
               onClick={this.handleClickDelete}
             >
               <i className="fa fa-trash" />
