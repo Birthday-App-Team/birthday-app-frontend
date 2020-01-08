@@ -16,7 +16,9 @@ class BirthdayList extends React.Component {
     if (this.props.isBirthdayToday) {
       return (
         <div>
-          <h2 className="birthday-today">turns {props.nextAge} today!</h2>
+          <h2 className="birthday-today">
+            turns {props.nextAge} today! <i className="fa fa-birthday-cake" />
+          </h2>
           <h3>{moment(props.dateOfBirth).format("MMM Do")}</h3>
         </div>
       );
@@ -97,13 +99,20 @@ class BirthdayList extends React.Component {
 
   // DONE BUTTON:
   handleUpdate = () => {
-    this.props.editBirthdayFunc(
-      this.props.id,
-      this.state.updatedName,
-      this.state.updatedDOB,
-      this.state.updatedInterests,
-      this.state.updatedNumber
-    );
+    console.log(this.state);
+    if (this.state.updatedDOB === "") {
+      this.setState({
+        updatedDOB: "-"
+      });
+    } else {
+      this.props.editBirthdayFunc(
+        this.props.id,
+        this.state.updatedName,
+        this.state.updatedDOB,
+        this.state.updatedInterests,
+        this.state.updatedNumber
+      );
+    }
     this.setState({
       showModal: false
     });
@@ -247,6 +256,7 @@ class BirthdayList extends React.Component {
           <div className="col-4
           ">
             <button className="btn info-dropdown"
+
               onClick={this.handleClickDropdown}
             >
               <i className="fa fa-caret-down" />
@@ -264,6 +274,7 @@ class BirthdayList extends React.Component {
             <button className="btn delete"
               onClick={this.handleClickDelete}
               >
+
               <i className="fa fa-trash" />
             </button>
 
