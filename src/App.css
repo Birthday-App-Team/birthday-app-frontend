@@ -104,8 +104,9 @@ a:hover {
   outline: transparent;
 }
 
-.searchBackground {
+.search {
   background-color: #fede5e;
+  margin: 10px auto;
 }
 /* - - - - DROPDOWN - - - - */
 /* css for DROPDOWN */

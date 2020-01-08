@@ -5,9 +5,8 @@ class AddPerson extends React.Component {
   //initial state
   state = {
     name: "",
-    dateSelected: "",
     note: "",
-    gender: "f",
+    gender: "",
     showModal: false,
     birthday: "",
     number: ""
@@ -49,6 +48,13 @@ class AddPerson extends React.Component {
         showModal: false
       });
     }
+    this.setState({
+      name: "",
+      note: "",
+      birthday: "",
+      number: ""
+    });
+    console.log(this.state.name);
   };
 
   //note input

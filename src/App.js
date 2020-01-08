@@ -136,6 +136,7 @@ class App extends React.Component {
 
   // PUT
   editBirthday = (id, name, DOB, newNote, number) => {
+    // let previousBirthday;
     const editedBirthday = {
       name: name,
       date_of_birth: DOB,
@@ -152,6 +153,7 @@ class App extends React.Component {
         const updatedBirthdays = this.state.birthdays.map(birthday => {
           // console.log(response);
           if (birthday.birthdayID === id) {
+            // previousBirthday = birthday.date_of_birth;
             birthday.interests = newNote;
             birthday.name = name;
             birthday.date_of_birth = DOB;
@@ -164,6 +166,20 @@ class App extends React.Component {
         });
       })
       .catch(err => console.log("Error editing task", err));
+    // if (
+    //   moment(DOB).format("MM-DD") === moment().format("MM-DD") &&
+    //   DOB !== previousBirthday
+    // ) {
+    //   axios.post(
+    //     "https://46m3x72wmb.execute-api.eu-west-2.amazonaws.com/dev/send",
+    //     {
+    //       recipient_name: name,
+    //       recipient_phone_number: number,
+    //       message: "Happy Birthday!! Have a great day xx",
+    //       from_phone_number: "+447506190696"
+    //     }
+    //   );
+    // }
   };
 
   render() {
