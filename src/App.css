@@ -14,8 +14,10 @@ body {
   border-radius: 18px;
   padding: 20px;
 }
+
+
 .logo {
-  float: center;
+    float: center;
 }
 .add-button {
   color: #fede5e;
@@ -35,12 +37,13 @@ body {
   border-color: rgb(59, 93, 243);
 }
 .edit {
-  color: #fede5e;
-  background-color: rgb(101, 129, 255);
-  text-align: center;
-  font-size: 0.8em;
-  font-weight: bolder;
-  border-spacing: 50px;
+    color: #FEDE5E;
+    background-color: rgb(101, 129, 255);
+    text-align: center;
+    font-size: 0.8em;
+    font-weight: bolder;
+    border-spacing: 50px;
+
 }
 .edit:hover,
 .edit:focus {
@@ -50,18 +53,20 @@ body {
   border-color: rgb(59, 93, 243);
 }
 .delete {
-  color: #fede5e;
-  background-color: rgb(101, 129, 255);
-  text-align: center;
-  font-size: 0.8em;
-  border-width: 2px;
-  border-color: rgb(59, 93, 243);
+
+    color: #FEDE5E;
+    background-color: rgb(101, 129, 255);
+    text-align: center;
+    font-size: 0.8em;
+    border-width: 2px;
+    border-color:  rgb(59, 93, 243);
 }
 .delete:hover,
 .delete:focus {
   color: #fede5e;
   background-color: rgb(128, 151, 255);
 }
+
 .rule {
   border: none;
   width: 100%;
@@ -206,16 +211,35 @@ a:hover {
     box-align: auto;
   }
 }
-@media only screen and (min-width: 401px) and (max-width: 1600px) {
-  body {
-    background-image: url("./media/graph-birthday.jpg");
-    background-size: cover;
-    object-fit: fill;
-    color: #fede5e;
-  }
-}
-@media only screen and (min-width: 961px) {
-  body {
-    background-color: #fede5e;
+
+
+    @media only screen and (max-width: 400px) {
+    body {
+            background-image: url("./media/birthday-party.jpg");
+            background-size: auto;
+            object-fit: fill;
+            color: #FEDE5E;
+          }
+    .App {
+            width: 90%;
+            box-align: auto;
+         }
+        }
+    
+
+  
+    @media only screen and (min-width: 401px) and (max-width: 1600px) {
+    body {
+            background-image: url("./media/graph-birthday.jpg");
+            background-size: cover;
+            object-fit: fill;
+            color: #FEDE5E;
+          }
+    }
+  
+    @media only screen and (min-width: 961px) {
+    body {
+      background-color: #FEDE5E;
+
   }
 }
