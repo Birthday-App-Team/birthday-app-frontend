@@ -166,20 +166,6 @@ class App extends React.Component {
         });
       })
       .catch(err => console.log("Error editing task", err));
-    // if (
-    //   moment(DOB).format("MM-DD") === moment().format("MM-DD") &&
-    //   DOB !== previousBirthday
-    // ) {
-    //   axios.post(
-    //     "https://46m3x72wmb.execute-api.eu-west-2.amazonaws.com/dev/send",
-    //     {
-    //       recipient_name: name,
-    //       recipient_phone_number: number,
-    //       message: "Happy Birthday!! Have a great day xx",
-    //       from_phone_number: "+447506190696"
-    //     }
-    //   );
-    // }
   };
 
   render() {
@@ -187,8 +173,8 @@ class App extends React.Component {
       <div className="App ">
         <div className="row">
           <AddPerson addBirthdayFunc={this.addBirthday} />
-          <div className="col-2"></div>
-          <div className="col-5">
+          <div className="col-6"></div>
+          <div className="col-2">
             <img
               src={logo}
               alt="birthdaze logo"
@@ -202,7 +188,7 @@ class App extends React.Component {
           <Search startSearchFunc={this.search} />
         </div>
         <div className="row">
-          <div className="col-12 col-md-6">
+          <div className="col-12">
             <hr className="rule" />
             {this.searchBirthdays(
               this.sortBirthdays(

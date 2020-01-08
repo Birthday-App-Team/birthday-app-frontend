@@ -10,7 +10,6 @@ body {
   opacity: 0.94;
   min-height: 800px;
   margin: 30px auto;
-  text-align: left;
   border-radius: 18px;
   padding: 20px;
 }
@@ -244,19 +243,20 @@ a:hover {
     width: 90%;
     box-align: auto;
   }
+  .logo {
+    float: center;
+  }
 }
 
-@media only screen and (min-width: 401px) and (max-width: 1600px) {
+@media only screen and (min-width: 401px) and (max-width: 2000px) {
   body {
     background-image: url("./media/graph-birthday.jpg");
     background-size: cover;
     object-fit: fill;
     color: #fede5e;
   }
-}
-
-@media only screen and (min-width: 961px) {
-  body {
-    background-color: #fede5e;
+  .App {
+    width: 70%;
+    box-align: auto;
   }
 }

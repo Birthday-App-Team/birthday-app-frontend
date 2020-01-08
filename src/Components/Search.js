@@ -25,7 +25,7 @@ class Search extends React.Component {
   render() {
     return (
       <div className="row">
-        <div className="col-2">
+        <div className="col-2 col-md-1">
           <button
             id="searchButton"
             className="btn search-button"
@@ -35,7 +35,7 @@ class Search extends React.Component {
           </button>
         </div>
         <div
-          className="col-4"
+          className="col-10 col-md-5"
           style={{ display: this.state.showDropdown ? "inline" : "none" }}
         >
           <textarea

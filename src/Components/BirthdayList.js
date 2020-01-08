@@ -137,7 +137,7 @@ class BirthdayList extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="">
         <div className="row">
           {/* this is the EDIT modal */}
           <div
