@@ -253,31 +253,29 @@ class BirthdayList extends React.Component {
           </div>
 
           {/* this is each BIRTHDAY */}
-          <div className="col-4
-          ">
-            <button className="btn info-dropdown"
-
+          <div
+            className="col-4
+          "
+          >
+            <button
+              className="btn info-dropdown"
               onClick={this.handleClickDropdown}
             >
               <i className="fa fa-caret-down" />
             </button>
             <h1>{this.props.name}</h1>
           </div>
-            <div className="col-5">
-              {this.formatDateDisplay(this.props)}
-            </div>
-            
-          <div className="col-12 col-md-3">
-            <button className="btn edit"
-              onClick={this.handleClickEdit}
-              > <i className="fa fa-pencil-square"/> </button>&nbsp;&nbsp;&nbsp;            
-            <button className="btn delete"
-              onClick={this.handleClickDelete}
-              >
+          <div className="col-5">{this.formatDateDisplay(this.props)}</div>
 
+          <div className="col-12 col-md-3">
+            <button className="btn edit" onClick={this.handleClickEdit}>
+              {" "}
+              <i className="fa fa-pencil-square" />{" "}
+            </button>
+            &nbsp;&nbsp;&nbsp;
+            <button className="btn delete" onClick={this.handleClickDelete}>
               <i className="fa fa-trash" />
             </button>
-
           </div>
 
           {/* this is the BIRTHDAY dropdown */}
@@ -297,10 +295,6 @@ class BirthdayList extends React.Component {
                   <a href={this.giftByAge()} target="blank">
                     <i className="fa fa-gift"></i>
                   </a>
-                </button>
-
-                <button type="button" className="btn envelope mx-2">
-                  <i className="fa fa-envelope"></i>
                 </button>
               </div>
             </div>

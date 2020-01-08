@@ -27,27 +27,26 @@ class Search extends React.Component {
       <div className="row">
         <div className="col-2">
           <button
-            className="btn info-dropdown"
+            id="searchButton"
+            className="btn search-button"
             onClick={this.handleClickDropdown}
           >
             <i className="fa fa-search" />
           </button>
         </div>
         <div
-          className="row"
+          className="col-4"
           style={{ display: this.state.showDropdown ? "inline" : "none" }}
         >
-          <div className="col-10">
-            <textarea
-              type="text"
-              id="form8"
-              className="col - 6 form-control search"
-              rows="1"
-              placeholder="Search"
-              value={this.props.search}
-              onChange={this.updateSearch}
-            ></textarea>
-          </div>
+          <textarea
+            type="text"
+            id="form8"
+            className="col - 6 form-control search"
+            rows="1"
+            placeholder="Search"
+            value={this.props.search}
+            onChange={this.updateSearch}
+          ></textarea>
         </div>
       </div>
     );

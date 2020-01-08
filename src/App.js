@@ -187,7 +187,8 @@ class App extends React.Component {
       <div className="App ">
         <div className="row">
           <AddPerson addBirthdayFunc={this.addBirthday} />
-          <div className="col-10">
+          <div className="col-2"></div>
+          <div className="col-5">
             <img
               src={logo}
               alt="birthdaze logo"
