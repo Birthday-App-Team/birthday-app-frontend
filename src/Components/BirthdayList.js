@@ -17,7 +17,7 @@ class BirthdayList extends React.Component {
       return (
         <div>
           <h2 className="birthday-today">
-            turns {props.nextAge} today! <i className="fa fa-birthday-cake" />
+            turns {props.nextAge} today! <i className="fa fa-birthday-cake mx-2" />
           </h2>
           <h3>{moment(props.dateOfBirth).format("MMM Do")}</h3>
         </div>
@@ -254,8 +254,7 @@ class BirthdayList extends React.Component {
 
           {/* this is each BIRTHDAY */}
           <div
-            className="col-4
-          "
+            className="col-4"
           >
             <button
               className="btn info-dropdown"
@@ -270,7 +269,7 @@ class BirthdayList extends React.Component {
           <div className="col-12 col-md-3">
             <button className="btn edit" onClick={this.handleClickEdit}>
               {" "}
-              <i className="fa fa-pencil-square" />{" "}
+              <i className="fa fa-pencil" />{" "}
             </button>
             &nbsp;&nbsp;&nbsp;
             <button className="btn delete" onClick={this.handleClickDelete}>

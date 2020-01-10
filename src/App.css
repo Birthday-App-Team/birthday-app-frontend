@@ -7,11 +7,11 @@ body {
 .App {
   text-align: center;
   background-color: #5271ff;
-  opacity: 0.94;
+  opacity: 0.96;
   min-height: 800px;
   margin: 30px auto;
   border-radius: 18px;
-  padding: 20px;
+  padding: 40px;
 }
 
 .logo {
@@ -37,16 +37,15 @@ body {
 .search-button {
   color: #fede5e;
   text-align: center;
-  font-size: 1em;
-  width: 43px;
-  margin-left: 10px;
-  margin-top: 10px;
+  font-size: 1.5em;
+  width: 63px;
+  margin-left: 16px;
 }
 .search-button:hover,
 .search-button:focus {
   color: #fede5e;
   text-align: center;
-  font-size: 1.1em;
+  font-size: 1.6em;
   border-color: #5271ff;
   background-color: #5271ff;
   outline: currentColor;
@@ -54,33 +53,31 @@ body {
   border-color: rgb(59, 93, 243);
 }
 .edit {
-  color: #fede5e;
+  color: #FEDE5E;
   background-color: rgb(101, 129, 255);
   text-align: center;
-  font-size: 0.8em;
-  font-weight: bolder;
-  border-spacing: 50px;
+  font-size: 1em;
 }
+
 .edit:hover,
 .edit:focus {
-  color: #fede5e;
+  color: #FEDE5E;
   background-color: rgb(128, 151, 255);
-  border-width: 2px;
-  border-color: rgb(59, 93, 243);
 }
 .delete {
-  color: #fede5e;
+  float: right;
+  color: #FEDE5E;
   background-color: rgb(101, 129, 255);
   text-align: center;
-  font-size: 0.8em;
-  border-width: 2px;
-  border-color: rgb(59, 93, 243);
+  font-size: 1em;
 }
+
 .delete:hover,
 .delete:focus {
-  color: #fede5e;
+  color: #FEDE5E;
   background-color: rgb(128, 151, 255);
 }
+
 
 .rule {
   border: none;
@@ -94,17 +91,17 @@ h6 {
   color: #fede5e;
 }
 h1 {
-  font-size: 1.3em;
+  font-size: 1.4em;
   color: #fede5e;
 }
 h2 {
   font: bolder;
-  font-size: 1.2em;
+  font-size: 1.3em;
   color: #fe66be;
 }
 h3 {
   font: bold;
-  font-size: 0.8em;
+  font-size: 0.9em;
   color: #fede5e;
 }
 .birthday-today {
@@ -112,6 +109,8 @@ h3 {
   color: #5271ff;
   font-weight: 800;
   font: whitesmoke;
+  padding-top: 4px;
+  padding-bottom: 4px;
   padding-left: 8px;
   border-radius: 10px;
 }
@@ -126,8 +125,16 @@ a:hover {
 
 .search {
   background-color: #fede5e;
-  margin: 10px auto;
+  margin-left: 20px;
+  margin-top: 8px;
 }
+
+.search:focus {
+  background-color: #fede5e;
+}
+
+
+
 /* - - - - DROPDOWN - - - - */
 /* css for DROPDOWN */
 .envelope,

@@ -34,6 +34,7 @@ class App extends React.Component {
   calcNextBirthdayAndAge = birthdays => {
     const nextBirthdays = birthdays.map(birthday => {
       const dobMoment = moment(birthday.date_of_birth);
+      console.log(dobMoment)
       const nowMoment = moment().startOf("day");
       const nextAge = nowMoment.diff(birthday.date_of_birth, "years") + 1;
       birthday.nextAge = nextAge;
@@ -93,7 +94,7 @@ class App extends React.Component {
     axios
       .delete(
         "https://gggyf4jhi4.execute-api.eu-west-1.amazonaws.com/dev/birthdays/" +
-          id
+        id
       )
       .then(response => {
         console.log("this is response:", response);
@@ -146,7 +147,7 @@ class App extends React.Component {
     axios
       .put(
         "https://gggyf4jhi4.execute-api.eu-west-1.amazonaws.com/dev/birthdays/" +
-          id,
+        id,
         editedBirthday
       )
       .then(response => {
@@ -172,7 +173,9 @@ class App extends React.Component {
     return (
       <div className="App ">
         <div className="row">
-          <AddPerson addBirthdayFunc={this.addBirthday} />
+          <div className="col-2">
+            <AddPerson addBirthdayFunc={this.addBirthday} />
+          </div>
           <div className="col-6"></div>
           <div className="col-2">
             <img
