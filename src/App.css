@@ -18,13 +18,13 @@ body {
   min-height: 800px;
   margin: 30px auto;
   border-radius: 18px;
-  padding: 34px;
-  width: 70%;
+  padding: 30px;
+  width: 75%;
   box-align: auto;
 }
 
 .logo {
-  width: 50%;
+  width: %;
   height: auto;
   float: right;
 }
@@ -251,13 +251,11 @@ a:hover {
     color: #fede5e;
   }
   .App {
-    width: 94%;
-    padding: 20px;
+    width: 96%;
+    padding: 15px;
     box-align: auto;
   }
 }
-
-
 
 @media only screen and (min-width: 577px) and (max-width: 2000px) {
   body {
