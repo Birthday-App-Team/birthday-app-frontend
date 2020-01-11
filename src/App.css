@@ -268,6 +268,12 @@ FOR REFERENCE:
 }
 
 @media only screen and (min-width: 577px) and (max-width: 767px) {
+  body {
+    background-image: url("./media/birthday-party.jpg");
+    background-size: auto;
+    object-fit: fill;
+    color: #fede5e;
+  }
   .App {
     margin: 15px auto;
     width: 82%;
