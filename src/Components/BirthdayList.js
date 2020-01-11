@@ -253,29 +253,32 @@ class BirthdayList extends React.Component {
           </div>
 
           {/* this is each BIRTHDAY */}
-          <div
-            className="col-4"
-          >
-            <button
-              className="btn info-dropdown"
-              onClick={this.handleClickDropdown}
-            >
+          {/* NAME COLUMN */}
+          <div className="col-12 col-sm-5">
+            <button className="btn info-dropdown"
+              onClick={this.handleClickDropdown}>
               <i className="fa fa-caret-down" />
             </button>
             <h1>{this.props.name}</h1>
           </div>
-          <div className="col-5">{this.formatDateDisplay(this.props)}</div>
 
-          <div className="col-12 col-md-3">
+
+          {/* DATE COLUMN */}
+          <div className="col-8 col-sm-4">
+            {this.formatDateDisplay(this.props)}
+          </div>
+
+          {/* EDIT and DELETE COLUMN */}
+          <div className="col-4 col-sm-3">
             <button className="btn edit" onClick={this.handleClickEdit}>
-              {" "}
-              <i className="fa fa-pencil" />{" "}
+              <i className="fa fa-pencil" />
             </button>
             &nbsp;&nbsp;&nbsp;
             <button className="btn delete" onClick={this.handleClickDelete}>
               <i className="fa fa-trash" />
             </button>
           </div>
+
 
           {/* this is the BIRTHDAY dropdown */}
           <div className="container">

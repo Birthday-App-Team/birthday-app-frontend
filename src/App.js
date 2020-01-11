@@ -34,7 +34,6 @@ class App extends React.Component {
   calcNextBirthdayAndAge = birthdays => {
     const nextBirthdays = birthdays.map(birthday => {
       const dobMoment = moment(birthday.date_of_birth);
-      console.log(dobMoment)
       const nowMoment = moment().startOf("day");
       const nextAge = nowMoment.diff(birthday.date_of_birth, "years") + 1;
       birthday.nextAge = nextAge;
@@ -172,24 +171,24 @@ class App extends React.Component {
   render() {
     return (
       <div className="App ">
+        {/* ROW 1 */}
         <div className="row">
           <div className="col-2">
             <AddPerson addBirthdayFunc={this.addBirthday} />
           </div>
-          <div className="col-6"></div>
-          <div className="col-2">
-            <img
-              src={logo}
-              alt="birthdaze logo"
-              className="logo"
-              width="250"
-              height="90"
-            />
+          <div className="col-10">
+            <img src={logo} alt="birthdaze logo" className="logo" width="233" height="87" />
           </div>
         </div>
-        <div>
-          <Search startSearchFunc={this.search} />
+
+        {/* ROW 2 */}
+        <div className="row">
+          <div className="col-12">
+            <Search startSearchFunc={this.search} />
+          </div>
         </div>
+
+        {/* ROW 3 */}
         <div className="row">
           <div className="col-12">
             <hr className="rule" />

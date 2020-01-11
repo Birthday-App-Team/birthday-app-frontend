@@ -1,46 +1,55 @@
+/* birthdaze logo colours:
+    blue:   #5271FF;
+    yellow: #FEDE5E;
+    pink:   #FE66BE;
+    turq:   #5CE1E6;
+ */
+
 body {
-  background-color: #fede5e;
+  background-color: #5271ff;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  font-weight: bolder;
 }
+
 .App {
-  text-align: center;
+  text-align: left;
   background-color: #5271ff;
-  opacity: 0.96;
+  opacity: 0.95;
   min-height: 800px;
   margin: 30px auto;
   border-radius: 18px;
-  padding: 40px;
+  padding: 34px;
+  width: 70%;
+  box-align: auto;
 }
 
 .logo {
-  float: center;
+  float: right;
 }
+
 .add-button {
   color: #fede5e;
   text-align: center;
-  font-size: 2em;
-  width: 63px;
+  font-size: 1.8em;
 }
+
 .add-button:hover,
 .add-button:focus {
   color: #fede5e;
-  text-align: center;
-  font-size: 2.2em;
-  border-color: #5271ff;
+  font-size: 2em;
+  border-color: #5271FF;
   background-color: #5271ff;
   outline: currentColor;
-  border-width: 2px;
-  border-color: rgb(59, 93, 243);
 }
+
 .search-button {
   color: #fede5e;
   text-align: center;
-  font-size: 1.5em;
+  font-size: 1.7em;
   width: 63px;
-  margin-left: 16px;
+  margin-left: 8px;
 }
+
 .search-button:hover,
 .search-button:focus {
   color: #fede5e;
@@ -52,68 +61,73 @@ body {
   border-width: 2px;
   border-color: rgb(59, 93, 243);
 }
+
 .edit {
+  float: right;
+  margin: 5px;
   color: #FEDE5E;
   background-color: rgb(101, 129, 255);
-  text-align: center;
   font-size: 1em;
 }
-
 .edit:hover,
 .edit:focus {
   color: #FEDE5E;
   background-color: rgb(128, 151, 255);
 }
+
 .delete {
   float: right;
+  margin: 5px;
   color: #FEDE5E;
   background-color: rgb(101, 129, 255);
-  text-align: center;
-  font-size: 1em;
+  font-size: 1.1em;
 }
-
 .delete:hover,
 .delete:focus {
   color: #FEDE5E;
   background-color: rgb(128, 151, 255);
 }
 
-
 .rule {
   border: none;
   width: 100%;
   border-top: 2px solid rgb(101, 129, 255);
 }
-h4,
-h5,
-h6 {
+
+h4, h5, h6 {
   font-size: 1em;
   color: #fede5e;
 }
+
 h1 {
   font-size: 1.4em;
   color: #fede5e;
 }
+
 h2 {
   font: bolder;
   font-size: 1.3em;
   color: #fe66be;
 }
+
 h3 {
   font: bold;
   font-size: 0.9em;
   color: #fede5e;
 }
+
 .birthday-today {
-  background-color: rgb(250, 125, 198);
-  color: #5271ff;
-  font-weight: 800;
-  font: whitesmoke;
+  background-color: #FE66BE;
+  color: #5271FF;
+  font-size: 1.3em;
+  font-weight: bold;
+  margin-top: 6px;
   padding-top: 4px;
   padding-bottom: 4px;
   padding-left: 8px;
   border-radius: 10px;
 }
+
 a {
   color: #fede5e;
 }
@@ -128,7 +142,6 @@ a:hover {
   margin-left: 20px;
   margin-top: 8px;
 }
-
 .search:focus {
   background-color: #fede5e;
 }
@@ -187,6 +200,7 @@ a:hover {
   margin: 9px;
   border: 0px;
 }
+
 /* - - - - ADD and EDIT modals - - - - */
 /* css for modals */
 .isVisible {
@@ -226,20 +240,8 @@ a:hover {
   color: rgb(51, 81, 214);
   background-color: rgb(255, 138, 206);
 }
-@media only screen and (max-width: 400px) {
-  body {
-    background-image: url("./media/birthday-party.jpg");
-    background-size: auto;
-    object-fit: fill;
-    color: #fede5e;
-  }
-  .App {
-    width: 90%;
-    box-align: auto;
-  }
-}
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 576px) {
   body {
     background-image: url("./media/birthday-party.jpg");
     background-size: auto;
@@ -247,23 +249,23 @@ a:hover {
     color: #fede5e;
   }
   .App {
-    width: 90%;
+    width: 94%;
+    padding: 20px;
     box-align: auto;
   }
   .logo {
-    float: center;
+    width: 74%;
+    height: auto;
   }
 }
 
-@media only screen and (min-width: 401px) and (max-width: 2000px) {
+
+
+@media only screen and (min-width: 577px) and (max-width: 2000px) {
   body {
     background-image: url("./media/graph-birthday.jpg");
     background-size: cover;
     object-fit: fill;
     color: #fede5e;
-  }
-  .App {
-    width: 70%;
-    box-align: auto;
   }
 }
