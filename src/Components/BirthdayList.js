@@ -9,7 +9,9 @@ class BirthdayList extends React.Component {
     updatedInterests: this.props.text,
     updatedNumber: this.props.number,
     showDropdown: false,
-    showModal: false
+    showModal: false,
+    checked: this.props.checkbox,
+    birthdayMessage: this.props.message
   };
 
   formatDateDisplay = props => {
@@ -90,6 +92,13 @@ class BirthdayList extends React.Component {
     });
   };
 
+  // EDIT BIRTHDAY MESSAGE:
+  updatebirthdayMessage = e => {
+    this.setState({
+      birthdayMessage: e.target.value
+    });
+  };
+
   // X BUTTON (DISMISS MODAL WITHOUT ANY CHANGES):
   handleModalDismiss = () => {
     this.setState({
@@ -99,23 +108,20 @@ class BirthdayList extends React.Component {
 
   // DONE BUTTON:
   handleUpdate = () => {
-    console.log(this.state);
-    if (this.state.updatedDOB === "") {
-      this.setState({
-        updatedDOB: "-"
-      });
-    } else {
-      this.props.editBirthdayFunc(
-        this.props.id,
-        this.state.updatedName,
-        this.state.updatedDOB,
-        this.state.updatedInterests,
-        this.state.updatedNumber
-      );
-    }
+    this.props.editBirthdayFunc(
+      this.props.id,
+      this.state.updatedName,
+      this.state.updatedDOB,
+      this.state.updatedInterests,
+      this.state.updatedNumber,
+      this.state.birthdayMessage,
+      this.state.checked
+    );
+
     this.setState({
       showModal: false
     });
+    console.log(this.state.birthdayMessage, this.state.checked);
   };
 
   // AMAZON GIFTS LINKS:
@@ -133,6 +139,20 @@ class BirthdayList extends React.Component {
     } else {
       return "https://www.amazon.co.uk/gcx/Gifts-for-Everyone/gfhz/?categoryId=adult-neutral";
     }
+  };
+
+  //Selecting checkbox
+  handleClickCheckbox = () => {
+    if (this.state.checked === true) {
+      this.setState({
+        checked: false
+      });
+    } else {
+      this.setState({
+        checked: true
+      });
+    }
+    console.log(this.state.checked);
   };
 
   render() {
@@ -219,6 +239,32 @@ class BirthdayList extends React.Component {
                       onChange={this.updateNumber}
                     ></input>
                   </div>
+                  <label
+                    data-error="wrong"
+                    data-success="right"
+                    htmlFor="form8"
+                  >
+                    Edit Birthday Message:
+                  </label>
+                  <div className="input-group mb-3">
+                    <div className="input-group-prepend">
+                      <div className="input-group-text">
+                        <input
+                          type="checkbox"
+                          aria-label="Checkbox for following text input"
+                          checked={this.state.checked}
+                          onChange={this.handleClickCheckbox}
+                        ></input>
+                      </div>
+                    </div>
+                    <input
+                      type="text"
+                      className="form-control"
+                      aria-label="Text input with checkbox"
+                      value={this.state.birthdayMessage}
+                      onChange={this.updatebirthdayMessage}
+                    ></input>
+                  </div>
 
                   <div className="md-form">
                     <label
@@ -291,6 +337,14 @@ class BirthdayList extends React.Component {
                 </span>
                 <span className="card interests">
                   PHONE NUMBER: {this.props.number}
+                </span>
+                <span className="card interests">
+                  Birthday Message: {this.props.message}{" "}
+                  {this.state.checked ? (
+                    <i className="fa fa-check"> </i>
+                  ) : (
+                    <i className="fa fa-times"> </i>
+                  )}
                 </span>
                 <button type="button" className="btn gift ml-2">
                   <a href={this.giftByAge()} target="blank">
