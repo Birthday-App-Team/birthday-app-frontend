@@ -109,14 +109,30 @@ class App extends React.Component {
   };
 
   // POST
-  addBirthday = (name, birthday, note, number) => {
+  addBirthday = (name, birthday, note, number, checked, message, toggle) => {
     const birthdaysCopy = this.state.birthdays.slice();
     const newBirthday = {
       name: name,
       date_of_birth: birthday,
       interests: note,
-      phone_number: number
+      phone_number: number,
+      send_message: checked,
+      birthday_message: message
     };
+    if (
+      moment(birthday).format("MM-DD") === moment().format("MM-DD") &&
+      toggle === false
+    ) {
+      axios.post(
+        "https://46m3x72wmb.execute-api.eu-west-2.amazonaws.com/dev/send",
+        {
+          recipient_name: name,
+          recipient_phone_number: number,
+          message: message,
+          from_phone_number: "+447506190696"
+        }
+      );
+    }
     axios
       .post(
         "https://gggyf4jhi4.execute-api.eu-west-1.amazonaws.com/dev/birthdays",
@@ -135,13 +151,15 @@ class App extends React.Component {
   };
 
   // PUT
-  editBirthday = (id, name, DOB, newNote, number) => {
+  editBirthday = (id, name, DOB, newNote, number, checked, message) => {
     // let previousBirthday;
     const editedBirthday = {
       name: name,
       date_of_birth: DOB,
       interests: newNote,
-      phone_number: number
+      phone_number: number,
+      send_message: checked,
+      birthday_message: message
     };
     axios
       .put(
@@ -150,6 +168,7 @@ class App extends React.Component {
         editedBirthday
       )
       .then(response => {
+        console.log(editedBirthday);
         const updatedBirthdays = this.state.birthdays.map(birthday => {
           // console.log(response);
           if (birthday.birthdayID === id) {
@@ -158,6 +177,8 @@ class App extends React.Component {
             birthday.name = name;
             birthday.date_of_birth = DOB;
             birthday.phone_number = number;
+            birthday.send_message = checked;
+            birthday.birthday_message = message;
           }
           return birthday;
         });
@@ -210,6 +231,8 @@ class App extends React.Component {
                   isBirthdayToday={birthday.isBirthdayToday}
                   editBirthdayFunc={this.editBirthday}
                   deleteBirthdayFunc={this.deleteBirthday}
+                  message={birthday.birthday_message}
+                  checkbox={birthday.send_message}
                 />
               );
             })}
