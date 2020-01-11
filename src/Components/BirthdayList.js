@@ -270,12 +270,11 @@ class BirthdayList extends React.Component {
 
           {/* EDIT and DELETE COLUMN */}
           <div className="col-4 col-sm-3">
+          <button className="btn delete" onClick={this.handleClickDelete}>
+              <i className="fa fa-trash" />
+            </button>
             <button className="btn edit" onClick={this.handleClickEdit}>
               <i className="fa fa-pencil" />
-            </button>
-            &nbsp;&nbsp;&nbsp;
-            <button className="btn delete" onClick={this.handleClickDelete}>
-              <i className="fa fa-trash" />
             </button>
           </div>
 
@@ -284,7 +283,7 @@ class BirthdayList extends React.Component {
           <div className="container">
             <div className="row">
               <div
-                className="col-12 col-sm-5"
+                className="col-12 col-md-10"
                 style={{ display: this.state.showDropdown ? "inline" : "none" }}
               >
                 <span className="card interests">

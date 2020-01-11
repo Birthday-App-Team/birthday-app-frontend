@@ -24,6 +24,8 @@ body {
 }
 
 .logo {
+  width: 50%;
+  height: auto;
   float: right;
 }
 
@@ -252,10 +254,6 @@ a:hover {
     width: 94%;
     padding: 20px;
     box-align: auto;
-  }
-  .logo {
-    width: 74%;
-    height: auto;
   }
 }
 
