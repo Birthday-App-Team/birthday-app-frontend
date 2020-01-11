@@ -24,7 +24,6 @@ body {
 }
 
 .logo {
-  width: %;
   height: auto;
   float: right;
 }
@@ -243,7 +242,9 @@ a:hover {
   background-color: rgb(255, 138, 206);
 }
 
-/* .App {
+/* 
+FOR REFERENCE:
+.App {
   margin: 30px auto;
   padding: 25px;
   width: 75%;
@@ -260,6 +261,9 @@ a:hover {
   .App {
     margin: 5px auto;
     width: 94%;
+  }
+  .logo {
+    width: 150px;
   }
 }
 
