@@ -1,5 +1,7 @@
 Birthday Application - Frontend
-This is the front end of a Birthday Application, built throughout the Tech Returners Your Journey Into Tech course. Twilio is fully functional, and allows users to set the text to automatically send at 10am on the birthday. If the birthday is added has the birthday as the current day and it is after 10am, the user has the option to send the text when adding the new birthday.
+This is the front end of a Birthday Application, built throughout the Tech Returners Your Journey Into Tech course.
+
+Twilio is fully functional, and allows users to set a text to automatically send at 10am on a birthday. If a person is added on the day of their birthday and it is after 10am, the user has the option to send a text straight away when adding the new birthday.
 
 It integrates with a backend, available at https://github.com/Birthday-App-Team/birthday-backend.
 
@@ -16,9 +18,9 @@ Axios
 ESLint
 It has been designed and built with mobile-first reponsive principles in mind.
 
-![Image of App on Iphone SE]
+![Image of App on Iphone SE]h(ttps://github.com/Birthday-App-Team/birthday-app-frontend/blob/master/public/Screenshot%20from%202020-01-14%2015-08-57.png)
 
-![Image of App on Ipad](https://github.com/mld1/todo-app-frontend/blob/master/public/Screenshot%20from%202020-01-14%2008-15-58.png)
+![Image of App on Ipad](https://github.com/Birthday-App-Team/birthday-app-frontend/blob/master/public/Screenshot%20from%202020-01-14%2015-09-10.png)
 
 Running the application locally
 Node.js must be installed if not already.
