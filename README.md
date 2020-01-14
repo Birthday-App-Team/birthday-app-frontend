@@ -1,4 +1,4 @@
-Todo Application - Frontend
+Birthday Application - Frontend
 This is the front end of a Todo Application, built throughout the Tech Returners Your Journey Into Tech course. Twilio is fully functional, and allows users to set the text to automatically send at 10am on the birthday. If the birthday is added has the birthday as the current day and it is after 10am, the user has the option to send the text when adding the new birthday.
 
 It integrates with a backend, available at https://github.com/Birthday-App-Team/birthday-backend.
