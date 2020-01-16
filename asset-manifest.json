@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/birthday-app-frontend/static/css/main.84c97e27.chunk.css",
-    "main.js": "/birthday-app-frontend/static/js/main.1ff5624a.chunk.js",
-    "main.js.map": "/birthday-app-frontend/static/js/main.1ff5624a.chunk.js.map",
+    "main.js": "/birthday-app-frontend/static/js/main.6aa8d436.chunk.js",
+    "main.js.map": "/birthday-app-frontend/static/js/main.6aa8d436.chunk.js.map",
     "runtime-main.js": "/birthday-app-frontend/static/js/runtime-main.cbcffd45.js",
     "runtime-main.js.map": "/birthday-app-frontend/static/js/runtime-main.cbcffd45.js.map",
     "static/js/2.2874a4a4.chunk.js": "/birthday-app-frontend/static/js/2.2874a4a4.chunk.js",
     "static/js/2.2874a4a4.chunk.js.map": "/birthday-app-frontend/static/js/2.2874a4a4.chunk.js.map",
     "index.html": "/birthday-app-frontend/index.html",
-    "precache-manifest.49b18b2da43945af649ac85c1a8ad0d2.js": "/birthday-app-frontend/precache-manifest.49b18b2da43945af649ac85c1a8ad0d2.js",
+    "precache-manifest.ef5f912282ef214dfdddfb13dc5b8a11.js": "/birthday-app-frontend/precache-manifest.ef5f912282ef214dfdddfb13dc5b8a11.js",
     "service-worker.js": "/birthday-app-frontend/service-worker.js",
     "static/css/main.84c97e27.chunk.css.map": "/birthday-app-frontend/static/css/main.84c97e27.chunk.css.map",
     "static/js/2.2874a4a4.chunk.js.LICENSE": "/birthday-app-frontend/static/js/2.2874a4a4.chunk.js.LICENSE",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.cbcffd45.js",
     "static/js/2.2874a4a4.chunk.js",
     "static/css/main.84c97e27.chunk.css",
-    "static/js/main.1ff5624a.chunk.js"
+    "static/js/main.6aa8d436.chunk.js"
   ]
 }
