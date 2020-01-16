@@ -93,7 +93,7 @@ class App extends React.Component {
     axios
       .delete(
         "https://gggyf4jhi4.execute-api.eu-west-1.amazonaws.com/dev/birthdays/" +
-          id
+        id
       )
       .then(response => {
         console.log("this is response:", response);
@@ -164,7 +164,7 @@ class App extends React.Component {
     axios
       .put(
         "https://gggyf4jhi4.execute-api.eu-west-1.amazonaws.com/dev/birthdays/" +
-          id,
+        id,
         editedBirthday
       )
       .then(response => {
@@ -192,22 +192,24 @@ class App extends React.Component {
   render() {
     return (
       <div className="App ">
+        {/* ROW 1 */}
         <div className="row">
-          <AddPerson addBirthdayFunc={this.addBirthday} />
-          <div className="col-6"></div>
           <div className="col-2">
-            <img
-              src={logo}
-              alt="birthdaze logo"
-              className="logo"
-              width="250"
-              height="90"
-            />
+            <AddPerson addBirthdayFunc={this.addBirthday} />
+          </div>
+          <div className="col-10">
+            <img src={logo} alt="birthdaze logo" className="logo" width="233" height="87" />
           </div>
         </div>
-        <div>
-          <Search startSearchFunc={this.search} />
+
+        {/* ROW 2 */}
+        <div className="row">
+          <div className="col-12">
+            <Search startSearchFunc={this.search} />
+          </div>
         </div>
+
+        {/* ROW 3 */}
         <div className="row">
           <div className="col-12">
             <hr className="rule" />

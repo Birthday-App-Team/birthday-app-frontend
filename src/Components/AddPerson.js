@@ -20,10 +20,17 @@ class AddPerson extends React.Component {
   // shows modal
   handleClick = () => {
     this.setState({
-      showModal: true
+      showModal: true,
+      name: "",
+      note: "",
+      gender: "",
+      birthday: "",
+      number: "",
+      checked: false,
+      message: "",
+      hideToggle: true,
+      toggle: false
     });
-
-    this.stateSetting();
   };
 
   // hides modal
@@ -71,9 +78,10 @@ class AddPerson extends React.Component {
       birthday: "",
       number: "",
       checked: false,
-      message: "",
+      message: "Hi, happy birthday! Have a great day x",
       toggle: false
     });
+    console.log("hi this is statesetting");
   };
 
   //checkbox click on/off
@@ -105,18 +113,16 @@ class AddPerson extends React.Component {
     let timeNow = moment().format("HH:mm:ss");
     if (
       timeNow > "10:00:00" &&
-      moment(e).format("MM-DD") === moment().format("MM-DD")
+      moment(e.target.value).format("MM-DD") === moment().format("MM-DD")
     ) {
       this.setState({
         hideToggle: false
       });
-      console.log("hi, hiding toggle " + this.state.hideToggle);
     } else {
       this.setState({
         hideToggle: true
       });
     }
-    console.log(this.state.hideToggle);
   };
 
   //name input
@@ -207,6 +213,7 @@ class AddPerson extends React.Component {
                       className="md-textarea form-control"
                       rows="1"
                       placeholder="Name"
+                      value={this.state.name}
                       onChange={this.handleNewName}
                     ></textarea>
                   </div>
@@ -222,6 +229,7 @@ class AddPerson extends React.Component {
                     <input
                       className="form-control col-12"
                       type="date"
+                      value={this.state.birthday}
                       onChange={this.handleBirthday}
                     ></input>
                   </div>
@@ -231,7 +239,7 @@ class AddPerson extends React.Component {
                       data-success="right"
                       htmlFor="tel-input"
                       className="col-12 col-form-label"
-                      placeholder="+44"
+                      value={this.state.number}
                     >
                       Phone Number:
                     </label>
@@ -241,6 +249,8 @@ class AddPerson extends React.Component {
                         className="md-textarea form-control"
                         type="tel"
                         id="tel-input"
+                        placeholder="Please include country code e.g. +44 for UK"
+                        value={this.state.number}
                         onChange={this.handleNewNumber}
                       ></input>
                     </div>
@@ -267,6 +277,8 @@ class AddPerson extends React.Component {
                       className="form-control"
                       aria-label="Text input with checkbox"
                       maxLength="1000"
+                      placeholder="Click checkbox to auto send text on birthday"
+                      value={this.state.message}
                       onChange={this.updatebirthdayMessage}
                     ></input>
                   </div>
@@ -285,6 +297,7 @@ class AddPerson extends React.Component {
                       className="md-textarea form-control"
                       rows="2"
                       placeholder="Add notes here"
+                      value={this.state.note}
                       onChange={this.updateNoteText}
                     ></textarea>
                   </div>

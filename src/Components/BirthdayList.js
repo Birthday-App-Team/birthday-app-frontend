@@ -19,7 +19,7 @@ class BirthdayList extends React.Component {
       return (
         <div>
           <h2 className="birthday-today">
-            turns {props.nextAge} today! <i className="fa fa-birthday-cake" />
+            turns {props.nextAge} today! <i className="fa fa-birthday-cake mx-2" />
           </h2>
           <h3>{moment(props.dateOfBirth).format("MMM Do")}</h3>
         </div>
@@ -299,36 +299,37 @@ class BirthdayList extends React.Component {
           </div>
 
           {/* this is each BIRTHDAY */}
-          <div
-            className="col-4
-          "
-          >
-            <button
-              className="btn info-dropdown"
-              onClick={this.handleClickDropdown}
-            >
+          {/* NAME COLUMN */}
+          <div className="col-12 col-sm-5">
+            <button className="btn info-dropdown"
+              onClick={this.handleClickDropdown}>
               <i className="fa fa-caret-down" />
             </button>
             <h1>{this.props.name}</h1>
           </div>
-          <div className="col-5">{this.formatDateDisplay(this.props)}</div>
 
-          <div className="col-12 col-md-3">
-            <button className="btn edit" onClick={this.handleClickEdit}>
-              {" "}
-              <i className="fa fa-pencil-square" />{" "}
-            </button>
-            &nbsp;&nbsp;&nbsp;
-            <button className="btn delete" onClick={this.handleClickDelete}>
+
+          {/* DATE COLUMN */}
+          <div className="col-8 col-sm-4">
+            {this.formatDateDisplay(this.props)}
+          </div>
+
+          {/* EDIT and DELETE COLUMN */}
+          <div className="col-4 col-sm-3">
+          <button className="btn delete" onClick={this.handleClickDelete}>
               <i className="fa fa-trash" />
             </button>
+            <button className="btn edit" onClick={this.handleClickEdit}>
+              <i className="fa fa-pencil" />
+            </button>
           </div>
+
 
           {/* this is the BIRTHDAY dropdown */}
           <div className="container">
             <div className="row">
               <div
-                className="col-12 col-sm-5"
+                className="col-12 col-md-10"
                 style={{ display: this.state.showDropdown ? "inline" : "none" }}
               >
                 <span className="card interests">
