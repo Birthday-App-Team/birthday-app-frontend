@@ -2,7 +2,10 @@
 
 This is the front end of a Birthday Application, built throughout the [Tech Returners](https://techreturners.com) Your Journey Into Tech course.
 
-The hosted version of the application is available here: https://birthday-app-team.github.io/birthday-app-frontend/
+Users can view a sorted list of birthdays, add new birthdays, edit existing birthdays and delete.
+
+Twilio
+The app also uses Twilio to allow users to set a text to automatically send at 10am on a birthday. If a person is added on the day of their birthday and it is after 10am, the user has the option to send a text straight away when adding the new birthday.
 
 It integrates with a backend, available at https://github.com/Birthday-App-Team/birthday-backend.
 
