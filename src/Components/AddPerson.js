@@ -269,6 +269,9 @@ class AddPerson extends React.Component {
                           type="checkbox"
                           aria-label="Checkbox for following text input"
                           onClick={this.handleClickCheckbox}
+                          data-toggle="tooltip"
+                          data-placement="right"
+                          title="Tooltip on right"
                         ></input>
                       </div>
                     </div>

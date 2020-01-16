@@ -93,7 +93,7 @@ class App extends React.Component {
     axios
       .delete(
         "https://gggyf4jhi4.execute-api.eu-west-1.amazonaws.com/dev/birthdays/" +
-        id
+          id
       )
       .then(response => {
         console.log("this is response:", response);
@@ -164,7 +164,7 @@ class App extends React.Component {
     axios
       .put(
         "https://gggyf4jhi4.execute-api.eu-west-1.amazonaws.com/dev/birthdays/" +
-        id,
+          id,
         editedBirthday
       )
       .then(response => {
@@ -198,7 +198,13 @@ class App extends React.Component {
             <AddPerson addBirthdayFunc={this.addBirthday} />
           </div>
           <div className="col-10">
-            <img src={logo} alt="birthdaze logo" className="logo" width="233" height="87" />
+            <img
+              src={logo}
+              alt="birthdaze logo"
+              className="logo"
+              width="233"
+              height="87"
+            />
           </div>
         </div>
 
